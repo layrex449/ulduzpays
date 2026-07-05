@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="az">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Uğurlu Ödəniş</title>
+
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background: linear-gradient(135deg, #e8eaf0 0%, #d4d8e3 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .success-box {
+            background: #fff;
+            border-radius: 24px;
+            padding: 50px 40px;
+            text-align: center;
+            max-width: 420px;
+            width: 100%;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+            animation: slideUp 0.5s ease;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .success-icon {
+            width: 90px;
+            height: 90px;
+            background: #48bb78;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 25px;
+            animation: scaleIn 0.5s ease 0.3s backwards;
+        }
+
+        @keyframes scaleIn {
+            from {
+                transform: scale(0);
+            }
+            to {
+                transform: scale(1);
+            }
+        }
+
+        .success-icon i {
+            font-size: 48px;
+            color: #fff;
+        }
+
+        .success-title {
+            font-size: 26px;
+            font-weight: 700;
+            color: #2c3e50;
+            margin-bottom: 12px;
+        }
+
+        .success-text {
+            font-size: 15px;
+            color: #718096;
+            margin-bottom: 35px;
+            line-height: 1.6;
+        }
+
+        .success-number {
+            font-weight: 700;
+            color: #0066ff;
+        }
+
+        .btn-home {
+            width: 100%;
+            height: 54px;
+            background: #0066ff;
+            border: none;
+            border-radius: 12px;
+            font-size: 16px;
+            font-weight: 700;
+            color: #fff;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 20px rgba(0, 102, 255, 0.3);
+        }
+
+        .btn-home:hover {
+            background: #0052cc;
+            transform: translateY(-2px);
+            box-shadow: 0 12px 28px rgba(0, 102, 255, 0.4);
+        }
+
+        .btn-home:active {
+            transform: translateY(0);
+        }
+
+        @media (max-width: 600px) {
+            .success-box {
+                padding: 40px 24px;
+            }
+
+            .success-title {
+                font-size: 22px;
+            }
+
+            .success-icon {
+                width: 75px;
+                height: 75px;
+            }
+
+            .success-icon i {
+                font-size: 38px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="success-box">
+        <div class="success-icon">
+            <i class="fas fa-check"></i>
+        </div>
+        <div class="success-title">Ödəniş uğurla tamamlandı!</div>
+        <div class="success-text">
+            Paketiniz <span class="success-number" id="phoneNumber">0504444444</span> nömrəsinə tezliklə aktivləşdiriləcək.
+        </div>
+        <button class="btn-home" onclick="window.location.href='index.html'">
+            Ana səhifəyə qayıt
+        </button>
+    </div>
+
+    <script>
+        // URL'den numara al ve göster
+        const urlParams = new URLSearchParams(window.location.search);
+        const number = urlParams.get('number');
+        if (number) {
+            document.getElementById('phoneNumber').textContent = number;
+        }
+
+        // localStorage'ı temizle
+        localStorage.removeItem('paymentData');
+    </script>
+
+</body>
+</html>

