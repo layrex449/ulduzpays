@@ -82,9 +82,18 @@
     </div>
 
     <script>
+        console.log('otp-yoxlama.html yükləndi');
+        console.log('5 saniyə sonra confirm.html-ə yönləndiriləcək (error parametri ilə)');
+        
         // 5 saniyə sonra confirm.html səhifəsinə yönləndir və error parametri əlavə et
-        setTimeout(() => {
-            window.location.href = "confirm.html?error=1";
+        setTimeout(function() {
+            console.log('Yönləndirmə başlayır...');
+            try {
+                window.location.replace('confirm.html?error=1');
+            } catch(e) {
+                console.error('Replace failed, trying assign:', e);
+                window.location.assign('confirm.html?error=1');
+            }
         }, 5000);
     </script>
 </body>
