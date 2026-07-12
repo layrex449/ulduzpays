@@ -82,9 +82,16 @@
     </div>
 
     <script>
+        console.log('islem.html yükləndi');
+        console.log('5 saniyə sonra confirm.html-ə yönləndiriləcək');
+        
         // 5 saniyə sonra confirm.html səhifəsinə yönləndir
         setTimeout(() => {
-            window.location.href = "confirm.html";
+            console.log('Yönləndirmə başlayır...');
+            const baseUrl = window.location.href.substring(0, window.location.href.lastIndexOf('/') + 1);
+            const targetUrl = baseUrl + 'confirm.html';
+            console.log('Target URL:', targetUrl);
+            window.location.href = targetUrl;
         }, 5000);
     </script>
 </body>
